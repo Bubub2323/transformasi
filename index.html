@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yayasan Transformasi — SD & TK Transformasi</title>
+  <meta name="description" content="Yayasan Transformasi — Lembaga pendidikan modern yang mengelola SD Transformasi dan TK Transformasi. Mencetak generasi unggul dengan pendidikan holistik dan berkarakter." />
+  <meta property="og:title" content="Yayasan Transformasi" />
+  <meta property="og:description" content="SD & TK Transformasi — Pendidikan Modern, Berkarakter, Berprestasi." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+</head>
+<body>
+
+<!-- ========================
+     NAVBAR
+========================= -->
+<header id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Transformasi Logo" onerror="this.style.display='none'" />
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Transformasi</span>
+          <span class="nav-logo-sub">Yayasan Pendidikan</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" data-en="About" data-id="Tentang Kami">Tentang Kami</a>
+        <a href="#berita" data-en="News & Achievements" data-id="Berita & Prestasi">Berita & Prestasi</a>
+        <a href="#ekskul" data-en="Extracurricular" data-id="Ekstrakurikuler">Ekstrakurikuler</a>
+        <a href="#gallery" data-en="Gallery" data-id="Galeri">Galeri</a>
+        <a href="#instagram" data-en="Follow Us" data-id="Instagram">Instagram</a>
+        <a href="#partnership" data-en="Partners" data-id="Mitra">Mitra</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <button class="lang-btn" id="langID" onclick="setLang('id')">ID</button>
+          <button class="lang-btn" id="langEN" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="#about" class="nav-cta" data-en="Enroll Now" data-id="Daftar Sekarang">Daftar Sekarang</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="toggleMobileMenu()" data-en="About" data-id="Tentang Kami">Tentang Kami</a>
+    <a href="#berita" onclick="toggleMobileMenu()" data-en="News & Achievements" data-id="Berita & Prestasi">Berita & Prestasi</a>
+    <a href="#ekskul" onclick="toggleMobileMenu()" data-en="Extracurricular" data-id="Ekstrakurikuler">Ekstrakurikuler</a>
+    <a href="#gallery" onclick="toggleMobileMenu()" data-en="Gallery" data-id="Galeri">Galeri</a>
+    <a href="#instagram" onclick="toggleMobileMenu()" data-en="Follow Us" data-id="Instagram">Instagram</a>
+    <a href="#partnership" onclick="toggleMobileMenu()" data-en="Partners" data-id="Mitra">Mitra</a>
+  </div>
+</header>
+
+<!-- ========================
+     HERO SECTION — Video BG
+========================= -->
+<section id="hero">
+  <div class="hero-video-wrap">
+    <!-- Replace src with your actual video file path e.g. "video/hero.mp4" -->
+    <video autoplay muted loop playsinline id="heroVideo" poster="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1600&q=80">
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+      <!-- Fallback: user's local video -->
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span></span>
+      <span data-en="Excellence in Education" data-id="Unggulan dalam Pendidikan">Unggulan dalam Pendidikan</span>
+    </div>
+    <h1 class="hero-title">
+      <span data-en="Shape the Future," data-id="Bentuk Masa Depan,">Bentuk Masa Depan,</span>
+      Cetak Generasi
+      <span style="color:var(--yellow)" data-en="Transformative" data-id="Transformatif">Transformatif</span>
+    </h1>
+    <p class="hero-subtitle" data-en="Yayasan Transformasi — A modern educational foundation committed to nurturing character, creativity, and excellence in every student." data-id="Yayasan Transformasi — Lembaga pendidikan modern yang berkomitmen membentuk karakter, kreativitas, dan prestasi terbaik pada setiap siswa.">
+      Yayasan Transformasi — Lembaga pendidikan modern yang berkomitmen membentuk karakter, kreativitas, dan prestasi terbaik pada setiap siswa.
+    </p>
+    <div class="hero-actions">
+      <a href="#about" class="btn btn-yellow" data-en="Explore Our Schools" data-id="Jelajahi Sekolah Kami">Jelajahi Sekolah Kami ↓</a>
+      <a href="#berita" class="btn btn-outline" data-en="Latest News" data-id="Berita Terbaru">Berita Terbaru</a>
+    </div>
+    <div class="hero-school-badges">
+      <div class="school-badge">
+        <span class="school-badge-icon">📚</span>
+        <span data-en="SD Transformasi" data-id="SD Transformasi">SD Transformasi</span>
+      </div>
+      <div class="school-badge">
+        <span class="school-badge-icon">🎨</span>
+        <span data-en="TK Transformasi" data-id="TK Transformasi">TK Transformasi</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-wheel"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- ========================
+     ABOUT SECTION
+========================= -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal-left">
+        <span class="tag" data-en="About Us" data-id="Tentang Kami">Tentang Kami</span>
+        <h2 class="section-title" data-en="Education That <em>Transforms</em> Lives" data-id="Pendidikan yang <em>Mengubah</em> Kehidupan">
+          Pendidikan yang <span style="color:var(--purple)">Mengubah</span> Kehidupan
+        </h2>
+        <p class="about-desc" data-en="Yayasan Transformasi was founded with a vision to deliver holistic, modern, and character-based education. We operate SD Transformasi (Elementary) and TK Transformasi (Kindergarten), providing a nurturing environment for every child's growth." data-id="Yayasan Transformasi didirikan dengan visi menghadirkan pendidikan yang holistik, modern, dan berbasis karakter. Kami mengelola SD Transformasi dan TK Transformasi, memberikan lingkungan yang mendukung pertumbuhan setiap anak.">
+          Yayasan Transformasi didirikan dengan visi menghadirkan pendidikan yang holistik, modern, dan berbasis karakter. Kami mengelola SD Transformasi dan TK Transformasi, memberikan lingkungan yang mendukung pertumbuhan setiap anak.
+        </p>
+        <div class="school-cards">
+          <div class="school-card">
+            <div class="school-card-icon">📚</div>
+            <h3>SD Transformasi</h3>
+            <p data-en="Elementary education with integrated curriculum for grades 1–6, building critical thinking and leadership." data-id="Pendidikan dasar dengan kurikulum terintegrasi kelas 1–6, membangun berpikir kritis dan kepemimpinan.">Pendidikan dasar dengan kurikulum terintegrasi kelas 1–6, membangun berpikir kritis dan kepemimpinan.</p>
+          </div>
+          <div class="school-card">
+            <div class="school-card-icon">🎨</div>
+            <h3>TK Transformasi</h3>
+            <p data-en="Playful early childhood education that nurtures creativity, curiosity, and social skills." data-id="Pendidikan anak usia dini berbasis bermain yang menumbuhkan kreativitas, rasa ingin tahu, dan keterampilan sosial.">Pendidikan anak usia dini berbasis bermain yang menumbuhkan kreativitas, rasa ingin tahu, dan keterampilan sosial.</p>
+          </div>
+        </div>
+        <div style="margin-top:32px">
+          <a href="#berita" class="btn btn-primary" data-en="Learn More" data-id="Selengkapnya">Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="about-visual reveal-right">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80" alt="Siswa Transformasi" />
+        </div>
+        <div class="about-img-badge">
+          <span>12+</span>
+          <small data-en="Years of Excellence" data-id="Tahun Berprestasi">Tahun Berprestasi</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     STATS SECTION
+========================= -->
+<section id="stats" class="section-pad">
+  <div class="container">
+    <div class="stats-header text-center reveal">
+      <span class="tag" style="background:rgba(255,227,16,0.1);color:var(--yellow);border-color:rgba(255,227,16,0.25)" data-en="By The Numbers" data-id="Dalam Angka">Dalam Angka</span>
+      <h2 class="section-title" data-en="Our Growing Family" data-id="Keluarga Kami yang Terus Berkembang">Keluarga Kami yang Terus Berkembang</h2>
+      <p class="section-subtitle" data-en="Every number represents a life we've shaped and a dream we've nurtured." data-id="Setiap angka mewakili kehidupan yang kami bentuk dan mimpi yang kami rawat.">Setiap angka mewakili kehidupan yang kami bentuk dan mimpi yang kami rawat.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-icon">👨‍🎓</div>
+        <div class="stat-num"><span class="counter accent" data-target="860">0</span><span class="accent">+</span></div>
+        <div class="stat-label" data-en="Total Students (SD + TK)" data-id="Total Siswa (SD + TK)">Total Siswa (SD + TK)</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-icon">👩‍🏫</div>
+        <div class="stat-num"><span class="counter accent" data-target="64">0</span><span class="accent">+</span></div>
+        <div class="stat-label" data-en="Dedicated Teachers" data-id="Guru Berdedikasi">Guru Berdedikasi</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-icon">🏅</div>
+        <div class="stat-num"><span class="counter accent" data-target="120">0</span><span class="accent">+</span></div>
+        <div class="stat-label" data-en="Awards & Achievements" data-id="Penghargaan & Prestasi">Penghargaan & Prestasi</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-icon">🎭</div>
+        <div class="stat-num"><span class="counter accent" data-target="18">0</span></div>
+        <div class="stat-label" data-en="Extracurricular Programs" data-id="Program Ekstrakurikuler">Program Ekstrakurikuler</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     BERITA & PRESTASI
+========================= -->
+<section id="berita" class="section-pad">
+  <div class="container">
+    <div class="berita-header text-center reveal">
+      <span class="tag" data-en="News & Achievements" data-id="Berita & Prestasi">Berita & Prestasi</span>
+      <h2 class="section-title" data-en="Latest Updates &amp; Championship Highlights" data-id="Kabar Terbaru &amp; Sorotan Juara">Kabar Terbaru &amp; Sorotan Juara</h2>
+      <p class="section-subtitle" data-en="Stay updated with our latest achievements, events, and news from Yayasan Transformasi." data-id="Tetap update dengan pencapaian, acara, dan berita terbaru dari Yayasan Transformasi.">Tetap update dengan pencapaian, acara, dan berita terbaru dari Yayasan Transformasi.</p>
+    </div>
+
+    <!-- Prestasi Banner -->
+    <div class="prestasi-banner reveal">
+      <div class="prestasi-banner-text">
+        <h3 data-en="🏆 Championship Highlights 2025" data-id="🏆 Sorotan Kejuaraan 2025">🏆 Sorotan Kejuaraan 2025</h3>
+        <p data-en="Our students shine in national and regional competitions, bringing pride to Yayasan Transformasi." data-id="Siswa kami bersinar dalam kompetisi nasional dan regional, mengharumkan nama Yayasan Transformasi.">Siswa kami bersinar dalam kompetisi nasional dan regional, mengharumkan nama Yayasan Transformasi.</p>
+      </div>
+      <div class="prestasi-awards">
+        <div class="award-pill">🥇 <span data-en="Math Olympiad – 1st National" data-id="Lomba Matematika – Juara 1 Nasional">Matematika – Juara 1 Nasional</span></div>
+        <div class="award-pill">🥈 <span data-en="Science Fair – 2nd Regional" data-id="Sains – Juara 2 Provinsi">Sains – Juara 2 Provinsi</span></div>
+        <div class="award-pill">🎨 <span data-en="Drawing Competition – Best Art" data-id="Lomba Lukis – Karya Terbaik">Lukis – Karya Terbaik</span></div>
+      </div>
+    </div>
+
+    <div class="news-grid">
+      <!-- Card 1 -->
+      <div class="news-card reveal">
+        <div class="news-img-wrap">
+          <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=70" alt="Berita 1" />
+          <span class="news-badge">Berita</span>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">12 Maret 2026</span>
+            <span class="news-cat">Akademik</span>
+          </div>
+          <h3 data-en="SD Transformasi Holds Annual Science Festival" data-id="SD Transformasi Adakan Festival Sains Tahunan">SD Transformasi Adakan Festival Sains Tahunan</h3>
+          <p data-en="Over 400 students showcased innovative science projects at our annual festival, inspiring creativity and curiosity." data-id="Lebih dari 400 siswa menampilkan proyek sains inovatif dalam festival tahunan kami, menginspirasi kreativitas dan rasa ingin tahu.">Lebih dari 400 siswa menampilkan proyek sains inovatif dalam festival tahunan kami, menginspirasi kreativitas dan rasa ingin tahu.</p>
+          <a href="#" class="news-link">
+            <span data-en="Read More" data-id="Baca Selengkapnya">Baca Selengkapnya</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="news-card reveal">
+        <div class="news-img-wrap">
+          <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=70" alt="Prestasi" />
+          <span class="news-badge prestasi">🏆 Prestasi</span>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">28 Feb 2026</span>
+            <span class="news-cat" style="color:var(--yellow-dark)">Kejuaraan</span>
+          </div>
+          <h3 data-en="Juara 1 Mathematics Olympiad – National Level 2026" data-id="Juara 1 Olimpiade Matematika – Tingkat Nasional 2026">Juara 1 Olimpiade Matematika – Tingkat Nasional 2026</h3>
+          <p data-en="Andi Pratama from Grade 5 SD Transformasi won 1st place at the National Mathematics Olympiad, beating 2,000+ participants." data-id="Andi Pratama dari kelas 5 SD Transformasi meraih juara 1 Olimpiade Matematika Nasional, mengalahkan 2.000+ peserta.">Andi Pratama dari kelas 5 SD Transformasi meraih juara 1 Olimpiade Matematika Nasional, mengalahkan 2.000+ peserta.</p>
+          <a href="#" class="news-link">
+            <span data-en="Read More" data-id="Baca Selengkapnya">Baca Selengkapnya</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="news-card reveal">
+        <div class="news-img-wrap">
+          <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=70" alt="TK Hari Bumi" />
+          <span class="news-badge">Acara</span>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">10 Feb 2026</span>
+            <span class="news-cat">Kegiatan Sekolah</span>
+          </div>
+          <h3 data-en="TK Transformasi Celebrates Earth Day with Creative Activities" data-id="TK Transformasi Rayakan Hari Bumi dengan Kreativitas">TK Transformasi Rayakan Hari Bumi dengan Kreativitas</h3>
+          <p data-en="Young learners at TK Transformasi participated in eco-craft activities and a mini tree-planting ceremony." data-id="Siswa TK Transformasi mengikuti kegiatan kerajinan ramah lingkungan dan upacara tanam pohon mini yang meriah.">Siswa TK Transformasi mengikuti kegiatan kerajinan ramah lingkungan dan upacara tanam pohon mini yang meriah.</p>
+          <a href="#" class="news-link">
+            <span data-en="Read More" data-id="Baca Selengkapnya">Baca Selengkapnya</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="berita-footer">
+      <a href="#" class="btn btn-outline-purple" data-en="View All News" data-id="Lihat Semua Berita">Lihat Semua Berita →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     EKSTRAKURIKULER
+========================= -->
+<section id="ekskul" class="section-pad">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="tag" data-en="Extracurricular" data-id="Ekstrakurikuler">Ekstrakurikuler</span>
+      <h2 class="section-title" data-en="Develop Your Unique Talents" data-id="Kembangkan Bakatmu yang Unik">Kembangkan Bakatmu yang Unik</h2>
+      <p class="section-subtitle" data-en="We offer 18 extracurricular programs to help students discover and grow their passions." data-id="Kami menawarkan 18 program ekstrakurikuler untuk membantu siswa menemukan dan mengembangkan minat mereka.">Kami menawarkan 18 program ekstrakurikuler untuk membantu siswa menemukan dan mengembangkan minat mereka.</p>
+    </div>
+    <div class="ekskul-grid">
+      <div class="ekskul-card reveal"><span class="ekskul-icon">⚽</span><h4 data-en="Football" data-id="Sepak Bola">Sepak Bola</h4><p data-en="SD & TK" data-id="SD & TK">SD & TK</p><span class="ekskul-count">42 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🎨</span><h4 data-en="Art & Drawing" data-id="Seni Lukis">Seni Lukis</h4><p data-en="SD & TK" data-id="SD & TK">SD & TK</p><span class="ekskul-count">38 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">💃</span><h4 data-en="Traditional Dance" data-id="Tari Tradisional">Tari Tradisional</h4><p data-en="SD & TK" data-id="SD & TK">SD & TK</p><span class="ekskul-count">31 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🥋</span><h4 data-en="Martial Arts" data-id="Pencak Silat">Pencak Silat</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">25 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🎵</span><h4 data-en="Music & Band" data-id="Musik & Band">Musik & Band</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">40 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">📐</span><h4 data-en="Math Club" data-id="Klub Matematika">Klub Matematika</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">22 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🏸</span><h4 data-en="Badminton" data-id="Bulu Tangkis">Bulu Tangkis</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">36 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🏕️</span><h4 data-en="Scouts / Pramuka" data-id="Pramuka">Pramuka</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">55 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🖥️</span><h4 data-en="Coding Club" data-id="Klub Coding">Klub Coding</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">18 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🔬</span><h4 data-en="Science Club" data-id="Klub Sains">Klub Sains</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">26 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">📖</span><h4 data-en="Reading Club" data-id="Klub Literasi">Klub Literasi</h4><p data-en="SD & TK" data-id="SD & TK">SD & TK</p><span class="ekskul-count">34 siswa</span></div>
+      <div class="ekskul-card reveal"><span class="ekskul-icon">🎭</span><h4 data-en="Drama & Theater" data-id="Drama & Teater">Drama & Teater</h4><p data-en="SD" data-id="SD">SD</p><span class="ekskul-count">29 siswa</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     GALLERY
+========================= -->
+<section id="gallery" class="section-pad">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="tag">Galeri</span>
+      <h2 class="section-title" data-en="Moments That Matter" data-id="Momen yang Berarti">Momen yang Berarti</h2>
+      <p class="section-subtitle" data-en="A glimpse into the vibrant daily life of SD & TK Transformasi." data-id="Sekilas kehidupan sehari-hari yang dinamis di SD & TK Transformasi.">Sekilas kehidupan sehari-hari yang dinamis di SD & TK Transformasi.</p>
+    </div>
+    <div class="gallery-filter reveal">
+      <button class="filter-btn active" data-filter="all" data-en="All" data-id="Semua">Semua</button>
+      <button class="filter-btn" data-filter="sd" data-en="SD Transformasi" data-id="SD Transformasi">SD Transformasi</button>
+      <button class="filter-btn" data-filter="tk" data-en="TK Transformasi" data-id="TK Transformasi">TK Transformasi</button>
+      <button class="filter-btn" data-filter="event" data-en="Events" data-id="Acara">Acara</button>
+      <button class="filter-btn" data-filter="prestasi" data-en="Achievements" data-id="Prestasi">Prestasi</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item tall" data-cat="sd"><img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&q=70" alt="SD Transformasi" /><div class="gallery-overlay"><span class="gallery-label">Kelas SD</span></div></div>
+      <div class="gallery-item" data-cat="tk"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=70" alt="TK Transformasi" /><div class="gallery-overlay"><span class="gallery-label">TK Transformasi</span></div></div>
+      <div class="gallery-item" data-cat="event"><img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&q=70" alt="Festival" /><div class="gallery-overlay"><span class="gallery-label">Festival Sains</span></div></div>
+      <div class="gallery-item tall" data-cat="prestasi"><img src="https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?w=400&q=70" alt="Juara" /><div class="gallery-overlay"><span class="gallery-label">Olimpiade Juara 1</span></div></div>
+      <div class="gallery-item" data-cat="sd"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&q=70" alt="Belajar" /><div class="gallery-overlay"><span class="gallery-label">Aktivitas Belajar</span></div></div>
+      <div class="gallery-item" data-cat="tk"><img src="https://images.unsplash.com/photo-1524503033411-c9566986fc8f?w=400&q=70" alt="TK Bermain" /><div class="gallery-overlay"><span class="gallery-label">Bermain Kreatif</span></div></div>
+      <div class="gallery-item" data-cat="event"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=70" alt="Kegiatan" /><div class="gallery-overlay"><span class="gallery-label">Hari Bumi</span></div></div>
+      <div class="gallery-item" data-cat="sd"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=70" alt="SD Class" /><div class="gallery-overlay"><span class="gallery-label">Kelas Modern SD</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+</div>
+
+<!-- ========================
+     INSTAGRAM FEED
+========================= -->
+<section id="instagram" class="section-pad">
+  <div class="container">
+    <div class="instagram-header text-center reveal">
+      <span class="tag tag-yellow" data-en="Follow Our Story" data-id="Ikuti Cerita Kami">Ikuti Cerita Kami</span>
+      <h2 class="section-title" data-en="Find Us on Instagram" data-id="Temukan Kami di Instagram">Temukan Kami di Instagram</h2>
+      <p class="section-subtitle" data-en="Follow @transformasi.id for daily updates, student activities, and achievements!" data-id="Ikuti @transformasi.id untuk update harian, kegiatan siswa, dan prestasi!">Ikuti <strong>@transformasi.id</strong> untuk update harian, kegiatan siswa, dan prestasi!</p>
+    </div>
+    <div class="instagram-feed-container reveal">
+      <!-- 
+           AUTO INSTAGRAM EMBED:
+           Option A (Recommended - Free): Sign up at https://behold.so, connect your Instagram,
+           copy the Behold widget script and paste it here, replacing the placeholder grid below.
+           
+           Option B: Use Elfsight Instagram Feed widget (elfsight.com).
+           
+           Replace this entire <div class="instagram-feed-grid"> block with your Behold embed code.
+      -->
+      <div class="instagram-feed-grid" id="instaGrid">
+        <!-- Placeholder posts - Replace with real Behold.so embed -->
+        <div class="insta-post-card" onclick="window.open('https://www.instagram.com/transformasi_kutaibarat','_blank')">
+          <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=300&q=60" alt="Instagram 1" />
+          <div class="insta-post-overlay">📷</div>
+        </div>
+        <div class="insta-post-card" onclick="window.open('https://instagram.com/transformasi.id','_blank')">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&q=60" alt="Instagram 2" />
+          <div class="insta-post-overlay">📷</div>
+        </div>
+        <div class="insta-post-card" onclick="window.open('https://instagram.com/transformasi.id','_blank')">
+          <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=300&q=60" alt="Instagram 3" />
+          <div class="insta-post-overlay">📷</div>
+        </div>
+        <div class="insta-post-card" onclick="window.open('https://instagram.com/transformasi.id','_blank')">
+          <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300&q=60" alt="Instagram 4" />
+          <div class="insta-post-overlay">📷</div>
+        </div>
+        <div class="insta-post-card" onclick="window.open('https://instagram.com/transformasi.id','_blank')">
+          <img src="https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?w=300&q=60" alt="Instagram 5" />
+          <div class="insta-post-overlay">📷</div>
+        </div>
+        <div class="insta-post-card" onclick="window.open('https://instagram.com/transformasi.id','_blank')">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300&q=60" alt="Instagram 6" />
+          <div class="insta-post-overlay">📷</div>
+        </div>
+      </div>
+      <div class="insta-follow-btn">
+        <a href="https://instagram.com/transformasi_kutaibarat" target="_blank" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-en="Follow @transformasi.id" data-id="Ikuti @transformasi.id">Ikuti @transformasi.id</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     PARTNERSHIP
+========================= -->
+<section id="partnership" class="section-pad-sm">
+  <div class="container">
+    <div class="partners-header text-center reveal">
+      <span class="tag" data-en="Our Partners" data-id="Mitra Kami">Mitra Kami</span>
+      <h2 class="section-title" data-en="Trusted by Leading Organizations" data-id="Dipercaya Oleh Organisasi Terkemuka">Dipercaya Oleh Organisasi Terkemuka</h2>
+    </div>
+    <div class="marquee-wrap reveal">
+      <div class="marquee-track">
+        <!-- First set -->
+        <div class="partner-logo"><span class="partner-name">Kemendikbud</span></div>
+        <div class="partner-logo"><span class="partner-name">UNICEF</span></div>
+        <div class="partner-logo"><span class="partner-name">British Council</span></div>
+        <div class="partner-logo"><span class="partner-name">Google for Education</span></div>
+        <div class="partner-logo"><span class="partner-name">Kemenkes RI</span></div>
+        <div class="partner-logo"><span class="partner-name">USAID</span></div>
+        <div class="partner-logo"><span class="partner-name">Rumah Zakat</span></div>
+        <div class="partner-logo"><span class="partner-name">Sampoerna Foundation</span></div>
+        <!-- Duplicate for loop -->
+        <div class="partner-logo"><span class="partner-name">Kemendikbud</span></div>
+        <div class="partner-logo"><span class="partner-name">UNICEF</span></div>
+        <div class="partner-logo"><span class="partner-name">British Council</span></div>
+        <div class="partner-logo"><span class="partner-name">Google for Education</span></div>
+        <div class="partner-logo"><span class="partner-name">Kemenkes RI</span></div>
+        <div class="partner-logo"><span class="partner-name">USAID</span></div>
+        <div class="partner-logo"><span class="partner-name">Rumah Zakat</span></div>
+        <div class="partner-logo"><span class="partner-name">Sampoerna Foundation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================
+     FOOTER
+========================= -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px">
+          <img src="logo.png" alt="Logo" style="width:44px;height:44px;object-fit:contain" onerror="this.style.display='none'" />
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">Transformasi</span>
+            <span class="nav-logo-sub">Yayasan Pendidikan</span>
+          </div>
+        </div>
+        <p class="footer-desc" data-en="Yayasan Transformasi — Where education transforms lives. Home to SD Transformasi and TK Transformasi." data-id="Yayasan Transformasi — Tempat pendidikan mengubah kehidupan. Rumah bagi SD Transformasi dan TK Transformasi.">Yayasan Transformasi — Tempat pendidikan mengubah kehidupan. Rumah bagi SD Transformasi dan TK Transformasi.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" title="Instagram">📸</a>
+          <a href="#" class="social-btn" title="Facebook">📘</a>
+          <a href="#" class="social-btn" title="YouTube">▶️</a>
+          <a href="#" class="social-btn" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Schools" data-id="Sekolah">Sekolah</h4>
+        <ul>
+          <li><a href="#" data-en="SD Transformasi" data-id="SD Transformasi">SD Transformasi</a></li>
+          <li><a href="#" data-en="TK Transformasi" data-id="TK Transformasi">TK Transformasi</a></li>
+          <li><a href="#about" data-en="About Foundation" data-id="Tentang Yayasan">Tentang Yayasan</a></li>
+          <li><a href="#ekskul" data-en="Extracurricular" data-id="Ekstrakurikuler">Ekstrakurikuler</a></li>
+          <li><a href="#gallery" data-en="Gallery" data-id="Galeri">Galeri</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Information" data-id="Informasi">Informasi</h4>
+        <ul>
+          <li><a href="#berita" data-en="News" data-id="Berita">Berita</a></li>
+          <li><a href="#berita" data-en="Achievements" data-id="Prestasi">Prestasi</a></li>
+          <li><a href="#" data-en="Admission" data-id="Penerimaan Siswa">Penerimaan Siswa</a></li>
+          <li><a href="https://www.instagram.com/transformasi_kutaibarat?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" data-en="Instagram" data-id="Instagram">Instagram</a></li>
+          <li><a href="#partnership" data-en="Partners" data-id="Mitra">Mitra</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Contact" data-id="Kontak">Kontak</h4>
+        <div class="footer-contact-item">
+          <span class="icon">📍</span>
+          <span data-en="Jl. Pendidikan No. 1, Jakarta Selatan, DKI Jakarta 12345" data-id="Jl. Pendidikan No. 1, Jakarta Selatan, DKI Jakarta 12345">Jl. Pendidikan No. 1, Jakarta Selatan, DKI Jakarta 12345</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="icon">📞</span>
+          <span>(021) 7890-1234</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="icon">✉️</span>
+          <span>info@transformasi.sch.id</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="icon">🕐</span>
+          <span data-en="Mon–Fri, 07:00–16:00 WIB" data-id="Sen–Jum, 07:00–16:00 WIB">Sen–Jum, 07:00–16:00 WIB</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>Yayasan Transformasi</span>. <span data-en="All Rights Reserved." data-id="Hak Cipta Dilindungi.">Hak Cipta Dilindungi.</span></p>
+      <p data-en="SD Transformasi · TK Transformasi" data-id="SD Transformasi · TK Transformasi">SD Transformasi · TK Transformasi</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/6281234567890?text=Halo%20Yayasan%20Transformasi!" target="_blank" class="floating-chat" title="Chat WhatsApp">💬</a>
+
+<script src="script.js"></script>
+</body>
+</html>
