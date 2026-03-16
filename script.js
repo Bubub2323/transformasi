@@ -277,3 +277,54 @@ galleryItems.forEach(item => {
 
 console.log('%c🎓 Yayasan Transformasi Website', 'color:#6900ef;font-size:18px;font-weight:800');
 console.log('%cSD Transformasi & TK Transformasi', 'color:#ffe310;font-size:14px');
+
+// =====================
+// GURU TAB & CAROUSEL
+// =====================
+function switchGuruTab(tab, btn) {
+  document.querySelectorAll('.guru-tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.guru-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+function initInfiniteCarousel(trackId) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  // Duplicate 4x biar loop panjang dan mulus
+  const original = track.innerHTML;
+  track.innerHTML = original + original + original + original;
+
+  // Hitung lebar 1 set original
+  const cards = track.querySelectorAll('.guru-card');
+  const totalOriginal = cards.length / 4;
+  const cardWidth = 220; // 200px lebar kartu + 20px gap (fixed, tidak tergantung display)
+  const loopWidth = cardWidth * totalOriginal;
+
+  // Inject CSS animation dinamis
+  const styleId = 'carousel-style-' + trackId;
+  const existing = document.getElementById(styleId);
+  if (existing) existing.remove();
+
+  const style = document.createElement('style');
+  style.id = styleId;
+  style.textContent = `
+    #${trackId} {
+      animation: scroll-${trackId} ${totalOriginal * 3}s linear infinite;
+    }
+    @keyframes scroll-${trackId} {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-${loopWidth}px); }
+    }
+    #${trackId}:hover {
+      animation-play-state: paused;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+window.addEventListener('load', () => {
+  initInfiniteCarousel('track-sd');
+  initInfiniteCarousel('track-tk');
+});

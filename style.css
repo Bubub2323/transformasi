@@ -1340,3 +1340,401 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .map-wrap iframe { height: 300px; }
   .map-direction-btn { font-size: 0.78rem; padding: 10px 16px; bottom: 12px; right: 12px; }
 }
+
+
+/* ===========================================
+   SAMBUTAN KETUA YAYASAN
+=========================================== */
+#sambutan { background: var(--white); }
+
+.sambutan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 72px;
+  align-items: center;
+}
+
+/* Photo column */
+.sambutan-photo-col { position: relative; }
+
+.sambutan-photo-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.sambutan-photo-wrap::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  width: 60%;
+  height: 60%;
+  border: 3px solid var(--yellow);
+  border-radius: var(--radius-md);
+  z-index: 0;
+}
+
+.sambutan-photo-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 60px;
+  right: -16px;
+  width: 50%;
+  height: 50%;
+  border: 3px solid var(--purple);
+  border-radius: var(--radius-md);
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.sambutan-photo-wrap img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: var(--radius-md);
+  display: block;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-lg);
+}
+
+.sambutan-name-card {
+  position: relative;
+  z-index: 2;
+  background: var(--dark);
+  color: var(--white);
+  padding: 18px 24px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  text-align: center;
+}
+
+.sambutan-name-card strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--yellow);
+  margin-bottom: 4px;
+}
+
+.sambutan-name-card span {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.5px;
+}
+
+/* Text column */
+.sambutan-text-col { }
+
+.sambutan-body {
+  font-size: 0.98rem;
+  color: var(--gray);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.sambutan-contact-box {
+  background: var(--gray-light);
+  border: 1px solid rgba(105,0,239,0.1);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  margin: 28px 0;
+}
+
+.sambutan-contact-box h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.sambutan-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sambutan-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.sambutan-contact-item a {
+  color: var(--purple);
+  font-weight: 600;
+  transition: var(--transition);
+}
+.sambutan-contact-item a:hover { color: var(--purple-dark); text-decoration: underline; }
+
+.sambutan-contact-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+.sambutan-tagline {
+  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+  border-radius: var(--radius-sm);
+  padding: 16px 24px;
+}
+
+.sambutan-tagline strong {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sambutan-grid { grid-template-columns: 1fr; gap: 48px; }
+  .sambutan-photo-wrap img { height: 380px; }
+}
+
+@media (max-width: 480px) {
+  .sambutan-photo-wrap img { height: 300px; }
+  .sambutan-contact-box { padding: 18px; }
+}
+
+/* ===========================================
+   KEPALA SEKOLAH & GURU
+=========================================== */
+#guru { background: var(--off-white); }
+
+/* Tab buttons */
+.guru-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.guru-tab-btn {
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border: 2px solid rgba(105,0,239,0.2);
+  color: var(--gray);
+  background: var(--white);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+.guru-tab-btn:hover { border-color: var(--purple); color: var(--purple); }
+.guru-tab-btn.active {
+  background: var(--purple);
+  color: var(--white);
+  border-color: var(--purple);
+  box-shadow: 0 4px 20px var(--purple-glow);
+}
+
+/* Tab content */
+.guru-tab-content { display: none; }
+.guru-tab-content.active { display: block; }
+
+/* Kepala Sekolah card */
+.kepsek-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: center;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(105,0,239,0.1);
+  margin-bottom: 56px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.kepsek-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--purple), var(--yellow));
+}
+.kepsek-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+
+.kepsek-img-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.kepsek-img-wrap img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: var(--radius-md);
+  display: block;
+}
+.kepsek-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+}
+
+.kepsek-school-tag {
+  display: inline-block;
+  background: rgba(105,0,239,0.08);
+  color: var(--purple);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(105,0,239,0.15);
+  margin-bottom: 14px;
+}
+.kepsek-school-tag.tk {
+  background: rgba(255,227,16,0.12);
+  color: #8b6d00;
+  border-color: rgba(255,227,16,0.35);
+}
+
+.kepsek-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.kepsek-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--purple);
+  margin-bottom: 16px;
+}
+.kepsek-desc {
+  font-size: 0.93rem;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.kepsek-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.kepsek-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gray-light);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+}
+.kepsek-stat span { font-size: 1.2rem; }
+.kepsek-stat strong { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
+
+/* Teacher carousel */
+.guru-carousel-wrap { }
+.guru-carousel-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.guru-carousel {
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+}
+.guru-carousel:active { cursor: grabbing; }
+
+.guru-carousel-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  will-change: transform;
+}
+.guru-card {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(105,0,239,0.07);
+  border: 1px solid rgba(105,0,239,0.08);
+  transition: var(--transition);
+}
+.guru-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-sm); }
+.guru-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.guru-card-info {
+  padding: 14px 16px;
+  text-align: center;
+}
+.guru-card-info strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.guru-card-info span {
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(105,0,239,0.2);
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+.carousel-dot.active {
+  background: var(--purple);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .kepsek-card { grid-template-columns: 220px 1fr; gap: 32px; }
+  .kepsek-img-wrap img { height: 260px; }
+}
+@media (max-width: 768px) {
+  .kepsek-card { grid-template-columns: 1fr; padding: 28px; }
+  .kepsek-img-wrap img { height: 280px; width: 200px; margin: 0 auto; }
+  .kepsek-name { font-size: 1.4rem; }
+  .guru-card { width: 160px; }
+  .guru-card img { height: 180px; }
+}
+@media (max-width: 480px) {
+  .kepsek-stats { gap: 10px; }
+  .kepsek-stat { padding: 8px 12px; }
+  .guru-card { width: 140px; }
+  .guru-card img { height: 160px; }
+}
