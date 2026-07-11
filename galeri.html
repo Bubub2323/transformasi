@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri — Yayasan Pendidikan Transformasi</title>
+  <meta name="description" content="Galeri foto kegiatan, prestasi, dan momen berharga SD & TK Transformasi, Kutai Barat." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+  <style>
+    /* Page hero */
+    .page-hero {
+      background: var(--dark);
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(105,0,239,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,227,16,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .page-hero h1 span { color: var(--yellow); }
+    .page-hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.1rem;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .breadcrumb a { color: var(--yellow); font-weight: 600; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: rgba(255,255,255,0.3); }
+
+    /* Full masonry gallery */
+    #gallery-full { background: var(--dark); }
+    #gallery-full .section-title { color: var(--white); }
+
+    .gallery-grid-full {
+      columns: 4;
+      column-gap: 16px;
+    }
+    @media (max-width: 1024px) { .gallery-grid-full { columns: 3; } }
+    @media (max-width: 640px)  { .gallery-grid-full { columns: 2; } }
+
+    .gallery-item-full {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item-full img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item-full:hover img { transform: scale(1.04); }
+    .gallery-item-full .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(105,0,239,0.85));
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+    .gallery-item-full:hover .gallery-overlay { opacity: 1; }
+    .gallery-item-full .gallery-label {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Stats bar */
+    .gallery-stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .gallery-stat { text-align: center; }
+    .gallery-stat strong { display: block; font-size: 2rem; font-weight: 900; color: var(--yellow); letter-spacing: -0.03em; }
+    .gallery-stat span { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="/assets/logo.png" alt="Transformasi Logo" onerror="this.style.display='none'" />
+        </a>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html#about">Tentang Kami</a>
+          <a href="berita.html">Berita & Prestasi</a>
+          <a href="ekstrakurikuler.html">Ekstrakurikuler</a>
+          <a href="galeri.html" class="active">Galeri</a>
+          <a href="index.html#instagram">Instagram</a>
+        </nav>
+        <div class="nav-right">
+          <div class="lang-toggle">
+            <button class="lang-btn" id="langID" onclick="setLang('id')">ID</button>
+            <button class="lang-btn" id="langEN" onclick="setLang('en')">EN</button>
+          </div>
+          <a href="index.html#footer" class="nav-cta">Kontak kami</a>
+          <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#about"     onclick="toggleMobileMenu()">Tentang Kami</a>
+      <a href="berita.html"           onclick="toggleMobileMenu()">Berita & Prestasi</a>
+      <a href="ekstrakurikuler.html"  onclick="toggleMobileMenu()">Ekstrakurikuler</a>
+      <a href="galeri.html"           onclick="toggleMobileMenu()">Galeri</a>
+      <a href="index.html#instagram"  onclick="toggleMobileMenu()">Media Sosial</a>
+      <a href="index.html#footer"     onclick="toggleMobileMenu()">Kontak Kami</a>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      <span>Galeri</span>
+    </div>
+    <h1>Momen yang <span>Berarti</span></h1>
+    <p>Sekilas kehidupan sehari-hari yang dinamis di TK &amp; SD Transformasi — penuh semangat, kasih, dan prestasi.</p>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section id="gallery-full" class="section-pad">
+    <div class="container">
+
+      <!-- Stats bar -->
+      <div class="gallery-stats-bar">
+        <div class="gallery-stat"><strong>500+</strong><span>Foto Kegiatan</span></div>
+        <div class="gallery-stat"><strong>18</strong><span>Tahun Berdiri</span></div>
+        <div class="gallery-stat"><strong>120+</strong><span>Prestasi</span></div>
+        <div class="gallery-stat"><strong>8</strong><span>Ekskul Aktif</span></div>
+      </div>
+
+      <!-- Filter -->
+      <div class="gallery-filter reveal">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="tk">TK Transformasi</button>
+        <button class="filter-btn" data-filter="sd">SD Transformasi</button>
+        <button class="filter-btn" data-filter="event">Acara</button>
+        <button class="filter-btn" data-filter="prestasi">Prestasi</button>
+      </div>
+
+      <!-- Masonry Grid — tambah <div> baru sesuai kebutuhan -->
+      <div class="gallery-grid-full" id="galleryGrid">
+
+        <div class="gallery-item-full" data-cat="sd">
+          <img src="assets/galeri/sd/SD1.JPG" alt="SD Transformasi" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Kelas SD</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="tk">
+          <img src="assets/galeri/tk/tk1.JPG" alt="TK Transformasi" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">TK Transformasi</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="event">
+          <img src="assets/galeri/acara/DSC06935.JPG" alt="Natal" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Perayaan Natal</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="prestasi">
+          <img src="assets/galeri/prestasi/fashionshow.JPG" alt="Fashion Show" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Lomba Fashion Show</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="sd">
+          <img src="assets/galeri/sd/belajar.png" alt="Belajar" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Aktivitas Belajar</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="tk">
+          <img src="assets/galeri/tk/play1.JPG" alt="TK Bermain" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Bermain Kreatif</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="tk">
+          <img src="assets/galeri/tk/DSC03428.JPG" alt="TK Belajar" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Belajar Kreatif</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="event">
+          <img src="assets/galeri/acara/berbudaya.JPG" alt="Hari Berbudaya" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Hari Berbudaya</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="sd">
+          <img src="assets/galeri/sd/kls.png" alt="Kelas SD" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Kelas Modern SD</span></div>
+        </div>
+
+        <div class="gallery-item-full" data-cat="sd">
+          <img src="assets/galeri/sd/kls2.png" alt="Kelas SD 2" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Kelas Modern SD</span></div>
+        </div>
+
+        <!-- Tambah foto baru di sini dengan format:
+        <div class="gallery-item-full" data-cat="sd|tk|event|prestasi">
+          <img src="path/ke/foto.jpg" alt="Deskripsi" loading="lazy" />
+          <div class="gallery-overlay"><span class="gallery-label">Label Foto</span></div>
+        </div>
+        -->
+
+      </div><!-- /gallery-grid-full -->
+
+      <!-- Back link -->
+      <div style="text-align:center; margin-top: 56px;">
+        <a href="index.html" class="btn btn-outline-purple">← Kembali ke Beranda</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px">
+            <img src="logo.png" alt="Logo" style="width:44px;height:44px;object-fit:contain" onerror="this.style.display='none'" />
+            <div class="nav-logo-text">
+              <span class="nav-logo-name">Transformasi</span>
+              <span class="nav-logo-sub">Yayasan Pendidikan</span>
+            </div>
+          </div>
+          <p class="footer-desc">Yayasan Pendidikan Transformasi — Tempat pendidikan mengubah kehidupan. Rumah bagi TK Transformasi dan SD Transformasi.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/transformasi_kutaibarat" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="IG" /></a>
+            <a href="https://www.facebook.com/share/1ArKHrLhUh/" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="FB" /></a>
+            <a href="https://youtube.com/@yayasan.transformasi" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YT" /></a>
+            <a href="https://www.tiktok.com/@yayasan_transformasi" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/15713/15713399.png" alt="TT" /></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Sekolah</h4>
+          <ul>
+            <li><a href="index.html#about">TK Transformasi</a></li>
+            <li><a href="index.html#about">SD Transformasi</a></li>
+            <li><a href="index.html#about">Tentang Yayasan</a></li>
+            <li><a href="ekstrakurikuler.html">Ekstrakurikuler</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Informasi</h4>
+          <ul>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="berita.html">Prestasi</a></li>
+            <li><a href="#">Penerimaan Siswa</a></li>
+            <li><a href="https://www.instagram.com/transformasi_kutaibarat">Instagram</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontak</h4>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Jl. Mangku Aji No.RT. 1, Belempung Ulaq, Kec. Barong Tongkok, Kutai Barat, Kalimantan Timur 75776</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>+62 819-5231-3687</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@transformasi.sch.id</span></div>
+          <div class="footer-contact-item"><span class="icon">🕐</span><span>Sen–Jum, 07:00–16:00 WIB</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 <span>Yayasan Pendidikan Transformasi</span>. Hak Cipta Dilindungi.</p>
+        <p>TK Transformasi · SD Transformasi</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/6281952313687?text=Halo%20Yayasan%20Transformasi!" target="_blank" class="floating-chat">
+    <img src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" alt="WA" />
+  </a>
+
+  <script src="script.js"></script>
+  <script>
+    /* Gallery filter untuk galeri.html */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.gallery-item-full').forEach(item => {
+          const show = filter === 'all' || item.dataset.cat === filter;
+          item.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+
+    /* Lightbox */
+    document.querySelectorAll('.gallery-item-full').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        document.getElementById('lightboxImg').src = img.src;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+    document.getElementById('lightboxClose').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('open');
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+    });
+  </script>
+</body>
+</html> 

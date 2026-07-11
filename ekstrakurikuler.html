@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ekstrakurikuler — Yayasan Pendidikan Transformasi</title>
+  <meta name="description" content="8 program ekstrakurikuler unggulan SD & TK Transformasi — kembangkan bakat dan minat setiap siswa." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+  <style>
+    /* Page hero */
+    .page-hero {
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 60%, #1a003a 100%);
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .page-hero h1 span { color: var(--yellow); }
+    .page-hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .breadcrumb a { color: var(--yellow); font-weight: 600; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: rgba(255,255,255,0.3); }
+
+    /* Enriched ekskul cards for dedicated page */
+    .ekskul-grid-full {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+    @media (max-width: 1024px) { .ekskul-grid-full { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px)  { .ekskul-grid-full { grid-template-columns: repeat(2, 1fr); } }
+
+    .ekskul-card-full {
+      background: var(--white);
+      border: 1px solid rgba(105,0,239,0.1);
+      border-radius: var(--radius-md);
+      padding: 36px 24px 28px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .ekskul-card-full::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple), var(--yellow));
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+    .ekskul-card-full:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
+    .ekskul-card-full:hover::after { transform: scaleX(1); }
+
+    .ekskul-icon-lg { font-size: 3.5rem; margin-bottom: 16px; display: block; transition: var(--transition); }
+    .ekskul-card-full:hover .ekskul-icon-lg { transform: scale(1.15) rotate(-5deg); }
+
+    .ekskul-card-full h3 { font-size: 1.1rem; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+    .ekskul-card-full .ekskul-level {
+      display: inline-block;
+      background: rgba(105,0,239,0.08);
+      color: var(--purple);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+    .ekskul-card-full p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; margin-bottom: 16px; }
+    .ekskul-card-full .ekskul-meta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(105,0,239,0.07);
+    }
+    .ekskul-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .ekskul-meta-item strong { font-size: 1rem; font-weight: 800; color: var(--purple); }
+    .ekskul-meta-item span { font-size: 0.7rem; color: var(--gray); }
+
+    /* CTA banner */
+    .ekskul-cta-banner {
+      background: linear-gradient(135deg, var(--dark), #1a003a);
+      border-radius: var(--radius-lg);
+      padding: 56px 48px;
+      text-align: center;
+      margin-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ekskul-cta-banner::before {
+      content: '🎭';
+      position: absolute;
+      right: 40px; bottom: -20px;
+      font-size: 10rem;
+      opacity: 0.05;
+    }
+    .ekskul-cta-banner h3 { font-size: 1.8rem; font-weight: 900; color: var(--white); margin-bottom: 12px; letter-spacing: -0.02em; }
+    .ekskul-cta-banner p { color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+    .ekskul-cta-banner .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="/assets/logo.png" alt="Transformasi Logo" onerror="this.style.display='none'" />
+        </a>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html#about">Tentang Kami</a>
+          <a href="berita.html">Berita & Prestasi</a>
+          <a href="ekstrakurikuler.html" class="active">Ekstrakurikuler</a>
+          <a href="galeri.html">Galeri</a>
+          <a href="index.html#instagram">Instagram</a>
+        </nav>
+        <div class="nav-right">
+          <div class="lang-toggle">
+            <button class="lang-btn" id="langID" onclick="setLang('id')">ID</button>
+            <button class="lang-btn" id="langEN" onclick="setLang('en')">EN</button>
+          </div>
+          <a href="index.html#footer" class="nav-cta">Kontak kami</a>
+          <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#about"     onclick="toggleMobileMenu()">Tentang Kami</a>
+      <a href="berita.html"           onclick="toggleMobileMenu()">Berita & Prestasi</a>
+      <a href="ekstrakurikuler.html"  onclick="toggleMobileMenu()">Ekstrakurikuler</a>
+      <a href="galeri.html"           onclick="toggleMobileMenu()">Galeri</a>
+      <a href="index.html#instagram"  onclick="toggleMobileMenu()">Media Sosial</a>
+      <a href="index.html#footer"     onclick="toggleMobileMenu()">Kontak Kami</a>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      <span>Ekstrakurikuler</span>
+    </div>
+    <h1>Kembangkan <span>Bakatmu</span></h1>
+    <p>Kami menawarkan 8 program ekstrakurikuler untuk membantu siswa menemukan dan mengembangkan minat serta bakat unik mereka.</p>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section id="ekskul" class="section-pad">
+    <div class="container">
+
+      <div class="text-center reveal" style="margin-bottom: 0;">
+        <span class="tag">Ekstrakurikuler</span>
+        <h2 class="section-title">8 Program <span style="color:var(--purple)">Unggulan</span></h2>
+        <p class="section-subtitle">Setiap program dirancang untuk menumbuhkan karakter, kreativitas, dan keberanian tampil terbaik.</p>
+      </div>
+
+      <div class="ekskul-grid-full">
+
+        <!-- 1. Futsal -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">⚽</span>
+          <h3>Futsal</h3>
+          <span class="ekskul-level">SD &amp; TK</span>
+          <p>Melatih kerja sama tim, disiplin, dan sportivitas melalui olahraga futsal yang menyenangkan dan kompetitif.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>42</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+        <!-- 2. Pantomim -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">🎭</span>
+          <h3>Pantomim</h3>
+          <span class="ekskul-level">SD &amp; TK</span>
+          <p>Mengekspresikan emosi dan cerita tanpa kata-kata — melatih kepercayaan diri, ekspresi wajah, dan gerak tubuh.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>38</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+        <!-- 3. Tari Daerah -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">💃</span>
+          <h3>Tari Daerah</h3>
+          <span class="ekskul-level">SD &amp; TK</span>
+          <p>Melestarikan budaya lokal Kalimantan melalui tarian tradisional yang indah dan penuh makna budaya.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>31</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+        <!-- 4. Musik & Band -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">🎵</span>
+          <h3>Musik &amp; Band</h3>
+          <span class="ekskul-level">SD</span>
+          <p>Mengenal dan memainkan berbagai instrumen musik — gitar, keyboard, drum — untuk membentuk musisi muda berbakat.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>40</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+        <!-- 5. Balet -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">🩰</span>
+          <h3>Balet</h3>
+          <span class="ekskul-level">SD</span>
+          <p>Melatih keanggunan, keseimbangan, dan koordinasi tubuh melalui seni tari balet yang artistik dan penuh disiplin.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>25</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+        <!-- 6. Klub Matematika -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">📐</span>
+          <h3>Klub Matematika</h3>
+          <span class="ekskul-level">SD</span>
+          <p>Mempertajam logika, analisis, dan pemecahan masalah untuk persiapan olimpiade matematika tingkat kabupaten hingga nasional.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>22</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+        <!-- 7. Tamborin -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">🪘</span>
+          <h3>Tamborin</h3>
+          <span class="ekskul-level">SD</span>
+          <p>Memainkan instrumen tamborin dalam formasi kelompok — melatih ritme, koordinasi, dan semangat kebersamaan.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>36</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+        <!-- 8. English Club -->
+        <div class="ekskul-card-full reveal">
+          <span class="ekskul-icon-lg">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+          <h3>Klub Bahasa Inggris</h3>
+          <span class="ekskul-level">SD</span>
+          <p>Meningkatkan kemampuan berbicara, menulis, dan memahami Bahasa Inggris melalui metode komunikatif yang menyenangkan.</p>
+          <div class="ekskul-meta">
+            <div class="ekskul-meta-item"><strong>55</strong><span>Siswa</span></div>
+            <div class="ekskul-meta-item"><strong>2×</strong><span>/ Minggu</span></div>
+          </div>
+        </div>
+
+      </div><!-- /ekskul-grid-full -->
+
+      <!-- CTA Banner -->
+      <div class="ekskul-cta-banner reveal">
+        <h3>Tertarik Bergabung?</h3>
+        <p>Daftarkan putra-putri Anda dan biarkan mereka menemukan passion-nya bersama kami. Pendaftaran ekskul dibuka setiap awal semester.</p>
+        <div class="cta-actions">
+          <a href="https://wa.me/6281952313687?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20ekstrakurikuler" target="_blank" class="btn btn-yellow">💬 Tanya via WhatsApp</a>
+          <a href="index.html" class="btn btn-outline">← Kembali ke Beranda</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px">
+            <img src="logo.png" alt="Logo" style="width:44px;height:44px;object-fit:contain" onerror="this.style.display='none'" />
+            <div class="nav-logo-text">
+              <span class="nav-logo-name">Transformasi</span>
+              <span class="nav-logo-sub">Yayasan Pendidikan</span>
+            </div>
+          </div>
+          <p class="footer-desc">Yayasan Pendidikan Transformasi — Tempat pendidikan mengubah kehidupan. Rumah bagi TK Transformasi dan SD Transformasi.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/transformasi_kutaibarat" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="IG" /></a>
+            <a href="https://www.facebook.com/share/1ArKHrLhUh/" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="FB" /></a>
+            <a href="https://youtube.com/@yayasan.transformasi" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YT" /></a>
+            <a href="https://www.tiktok.com/@yayasan_transformasi" class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/15713/15713399.png" alt="TT" /></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Sekolah</h4>
+          <ul>
+            <li><a href="index.html#about">TK Transformasi</a></li>
+            <li><a href="index.html#about">SD Transformasi</a></li>
+            <li><a href="index.html#about">Tentang Yayasan</a></li>
+            <li><a href="ekstrakurikuler.html">Ekstrakurikuler</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Informasi</h4>
+          <ul>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="berita.html">Prestasi</a></li>
+            <li><a href="#">Penerimaan Siswa</a></li>
+            <li><a href="https://www.instagram.com/transformasi_kutaibarat">Instagram</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontak</h4>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Jl. Mangku Aji No.RT. 1, Belempung Ulaq, Kec. Barong Tongkok, Kutai Barat, Kalimantan Timur 75776</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>+62 819-5231-3687</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@transformasi.sch.id</span></div>
+          <div class="footer-contact-item"><span class="icon">🕐</span><span>Sen–Jum, 07:00–16:00 WIB</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 <span>Yayasan Pendidikan Transformasi</span>. Hak Cipta Dilindungi.</p>
+        <p>TK Transformasi · SD Transformasi</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/6281952313687?text=Halo%20Yayasan%20Transformasi!" target="_blank" class="floating-chat">
+    <img src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" alt="WA" />
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
