@@ -189,7 +189,7 @@ function closeLightbox() {
 // SMOOTH SCROLL for anchor links
 // =====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', function (e) {
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
       e.preventDefault();
@@ -245,13 +245,71 @@ if (marqueeTrack) {
 }
 
 // =====================
-// Instagram: Replace placeholder with live Behold.so embed
-// HOW TO USE:
-// 1. Go to https://behold.so and create a free account
-// 2. Connect your @transformasi.id Instagram account
-// 3. Copy the <div> embed code and replace the contents of #instaGrid
-// Example: <div id="YOUR_BEHOLD_ID"></div><script src="https://w.behold.so/widget.js" ...></script>
+// INSTAGRAM & TIKTOK — LAZY LOAD EMBEDS
+// Ini yang menghentikan tab "muter/reload" terus-menerus.
+// Sebelumnya setiap kartu punya <script src="embed.js"> sendiri (7x),
+// jadi browser nembak banyak request berat ke server luar begitu
+// halaman dibuka. Sekarang script cuma di-load SATU KALI, dan baru
+// ditembak saat user benar-benar scroll sampai section #instagram.
+//
+// PENTING: pastikan tag <script src="//www.instagram.com/embed.js">
+// dan <script src="https://www.tiktok.com/embed.js"> yang lama di
+// dalam setiap .insta-post-card di HTML SUDAH DIHAPUS, karena
+// sekarang di-handle otomatis dari sini.
 // =====================
+(function () {
+  const instaSection = document.getElementById('instagram');
+  if (!instaSection) return;
+
+  let embedsLoaded = false;
+
+  function loadScriptOnce(src) {
+    return new Promise((resolve) => {
+      // Kalau sudah pernah dimuat, jangan dimuat ulang
+      if (document.querySelector(`script[src="${src}"]`)) {
+        resolve();
+        return;
+      }
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = resolve; // tetap lanjut meski gagal, jangan sampai macet
+      document.body.appendChild(s);
+    });
+  }
+
+  async function loadEmbeds() {
+    if (embedsLoaded) return;
+    embedsLoaded = true;
+
+    await Promise.all([
+      loadScriptOnce('https://www.instagram.com/embed.js'),
+      loadScriptOnce('https://www.tiktok.com/embed.js')
+    ]);
+
+    // Proses ulang blockquote Instagram jadi post asli
+    if (window.instgrm && window.instgrm.Embeds) {
+      window.instgrm.Embeds.process();
+    }
+    // TikTok embed.js otomatis scan blockquote.tiktok-embed saat load,
+    // tapi kalau section baru muncul belakangan, panggil ulang lib-nya kalau ada
+    if (window.tiktokEmbed && typeof window.tiktokEmbed.lib?.render === 'function') {
+      window.tiktokEmbed.lib.render(document.querySelectorAll('.tiktok-embed'));
+    }
+  }
+
+  const embedObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadEmbeds();
+        embedObserver.disconnect();
+      }
+    });
+  }, { rootMargin: '300px' });
+
+  embedObserver.observe(instaSection);
+})();
 
 // =====================
 // Scroll-based navbar link highlighting
@@ -288,18 +346,31 @@ function switchGuruTab(tab, btn) {
   btn.classList.add('active');
 }
 
+// Simpan track mana yang sudah di-init biar tidak double-duplicate
+// kalau initInfiniteCarousel ke-panggil lebih dari sekali.
+const initializedCarousels = new Set();
+
 function initInfiniteCarousel(trackId) {
   const track = document.getElementById(trackId);
   if (!track) return;
+  if (initializedCarousels.has(trackId)) return; // guard: cegah duplikasi kartu
+  initializedCarousels.add(trackId);
 
-  // Duplicate 4x biar loop panjang dan mulus
+  const cards = track.querySelectorAll('.guru-card');
+  if (!cards.length) return;
+
+  // Ukur lebar kartu asli dari DOM (bukan hardcode), termasuk gap
+  const trackStyle = window.getComputedStyle(track);
+  const gap = parseFloat(trackStyle.columnGap || trackStyle.gap || '20') || 20;
+  const firstCardRect = cards[0].getBoundingClientRect();
+  const cardWidth = firstCardRect.width + gap;
+
+  const totalOriginal = cards.length;
+
+  // Duplikasi 4x biar loop panjang & mulus
   const original = track.innerHTML;
   track.innerHTML = original + original + original + original;
 
-  // Hitung lebar 1 set original
-  const cards = track.querySelectorAll('.guru-card');
-  const totalOriginal = cards.length / 4;
-  const cardWidth = 220; // 200px lebar kartu + 20px gap (fixed, tidak tergantung display)
   const loopWidth = cardWidth * totalOriginal;
 
   // Inject CSS animation dinamis
@@ -311,7 +382,9 @@ function initInfiniteCarousel(trackId) {
   style.id = styleId;
   style.textContent = `
     #${trackId} {
-      animation: scroll-${trackId} ${totalOriginal * 3}s linear infinite;
+      display: flex;
+      will-change: transform;
+      animation: scroll-${trackId} ${Math.max(totalOriginal * 3, 10)}s linear infinite;
     }
     @keyframes scroll-${trackId} {
       0%   { transform: translateX(0); }
@@ -324,7 +397,9 @@ function initInfiniteCarousel(trackId) {
   document.head.appendChild(style);
 }
 
-window.addEventListener('load', () => {
+// Pakai DOMContentLoaded (bukan 'load') supaya carousel langsung jalan
+// tanpa nunggu semua gambar/embed eksternal selesai dimuat.
+document.addEventListener('DOMContentLoaded', () => {
   initInfiniteCarousel('track-sd');
   initInfiniteCarousel('track-tk');
 });

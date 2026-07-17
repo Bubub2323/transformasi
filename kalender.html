@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kalender Akademik — Yayasan Transformasi</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -32,16 +35,6 @@
   --border-glow: 1px solid rgba(105,0,239,0.25);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: var(--font-primary);
-  background: var(--off-white);
-  color: var(--dark);
-  line-height: 1.6;
-}
-
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 .section-pad { padding: 90px 0; }
 
 .tag {
@@ -72,7 +65,7 @@ body {
   line-height: 1.7;
 }
 
-/* ===== Page header ===== */
+/* ===== Page header (hero kalender) ===== */
 .cal-hero {
   background: var(--dark);
   position: relative;
@@ -155,12 +148,11 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-/* ===== Month nav ===== */
+/* ===== Month dropdown nav ===== */
 .month-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
   margin: 0 0 36px;
   position: relative;
   z-index: 2;
@@ -172,27 +164,15 @@ body {
   border: var(--border-glow);
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 10px 14px;
+  gap: 6px;
+  padding: 8px 10px;
 }
-.month-nav button {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: var(--purple);
-  color: var(--white);
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  transition: var(--transition);
-  flex-shrink: 0;
-}
-.month-nav button:hover { background: var(--purple-dark); transform: scale(1.06); }
-.month-nav select.current {
+.month-nav-card select {
   font-family: var(--font-primary);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--dark);
-  min-width: 150px;
+  min-width: 160px;
   text-align: center;
   text-align-last: center;
   letter-spacing: -0.01em;
@@ -201,118 +181,16 @@ body {
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
+  padding: 0 8px;
 }
 
-/* ===== Month pills (quick jump, all 12 at a glance) ===== */
-.month-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 44px;
-}
-.month-pill {
-  font-family: var(--font-secondary);
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 50px;
-  border: 1.5px solid rgba(105,0,239,0.15);
-  background: var(--white);
-  color: var(--gray);
-  cursor: pointer;
-  transition: var(--transition);
-  position: relative;
-}
-.month-pill:hover { border-color: var(--purple); color: var(--purple); }
-.month-pill.active {
-  background: var(--purple);
-  color: var(--white);
-  border-color: var(--purple);
-  box-shadow: 0 4px 16px var(--purple-glow);
-}
-.month-pill .ev-dot {
-  display: inline-block;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--yellow);
-  margin-left: 6px;
-  vertical-align: middle;
-}
-.month-pill.active .ev-dot { background: var(--yellow); }
-
-/* ===== Calendar grid ===== */
-.calendar {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(105,0,239,0.1);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-}
-
-.dow-row {
-  display: grid;
-  grid-template-columns: repeat(7,1fr);
-  background: var(--dark);
-}
-.dow-row div {
-  font-family: var(--font-secondary);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  padding: 14px 6px;
-  text-align: center;
-  font-weight: 700;
-}
-
-.grid { display: grid; grid-template-columns: repeat(7,1fr); }
-
-.cell {
-  min-height: 104px;
-  border-right: 1px solid rgba(105,0,239,0.08);
-  border-bottom: 1px solid rgba(105,0,239,0.08);
-  padding: 8px 8px;
-  position: relative;
-  background: var(--white);
-  transition: var(--transition);
-}
-.grid .cell:nth-child(7n) { border-right: none; }
-.cell.empty { background: var(--gray-light); }
-.cell.has-event:hover { background: var(--gray-light); }
-
-.daynum {
-  font-family: var(--font-secondary);
-  font-size: 12px;
-  font-weight: 700;
-  color: #b3a9c9;
-}
-.cell.has-event .daynum { color: var(--purple); }
-.cell.weekend .daynum { color: var(--yellow-dark); }
-
-.chip {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--font-secondary);
-  font-size: 10.5px;
-  font-weight: 600;
-  line-height: 1.3;
-  padding: 3px 7px;
-  border-radius: 6px;
-  color: var(--white);
-}
-.chip.akademik { background: var(--purple); }
-.chip.libur { background: #ff4d6d; }
-.chip.acara { background: var(--dark); }
-.chip.ujian { background: var(--yellow); color: var(--dark); }
-
-/* legend */
+/* ===== legend ===== */
 .legend {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 24px 4px 0;
+  margin: 0 4px 28px;
   font-family: var(--font-secondary);
   font-size: 12.5px;
   font-weight: 600;
@@ -325,422 +203,679 @@ body {
 .dot.acara { background: var(--dark); }
 .dot.ujian { background: var(--yellow); }
 
-/* ===== Event list ===== */
-.list-head {
-  margin: 64px 0 28px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+/* ===== FullCalendar container ===== */
+.calendar-wrap {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(105,0,239,0.1);
+  box-shadow: var(--shadow-sm);
+  padding: 28px;
 }
-.list-head h2 {
-  font-size: 1.6rem;
+
+#calendar { font-family: var(--font-secondary); }
+
+/* FullCalendar theme overrides */
+.fc { --fc-border-color: rgba(105,0,239,0.08); --fc-today-bg-color: var(--gray-light); }
+.fc .fc-toolbar { margin-bottom: 1.2em; }
+.fc .fc-toolbar-title {
+  font-family: var(--font-primary);
   font-weight: 800;
+  font-size: 1.3rem;
   color: var(--dark);
   letter-spacing: -0.01em;
 }
-.list-head .count {
-  font-family: var(--font-secondary);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--purple);
-  background: var(--purple-glow);
-  padding: 5px 14px;
-  border-radius: 50px;
-}
-
-.event-row {
-  display: grid;
-  grid-template-columns: 72px 1fr auto;
-  gap: 20px;
-  align-items: center;
-  background: var(--white);
-  border: 1px solid rgba(105,0,239,0.08);
-  border-radius: var(--radius-md);
-  padding: 18px 22px;
-  margin-bottom: 14px;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-.event-row::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 4px;
-  height: 100%;
+.fc .fc-button {
   background: var(--purple);
-  transition: var(--transition);
+  border: none;
+  box-shadow: none;
+  text-transform: capitalize;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 50px !important;
 }
-.event-row:hover {
-  box-shadow: var(--shadow-sm);
-  transform: translateY(-3px);
-  border-color: rgba(105,0,239,0.2);
-}
-.event-row.libur::before { background: #ff4d6d; }
-.event-row.acara::before { background: var(--dark); }
-.event-row.ujian::before { background: var(--yellow); }
-
-.event-date {
-  text-align: center;
+.fc .fc-button:hover { background: var(--purple-dark); }
+.fc .fc-button:focus, .fc .fc-button:active { box-shadow: 0 0 0 3px var(--purple-glow) !important; }
+.fc .fc-button:disabled { opacity: 0.35; background: var(--gray); cursor: not-allowed; }
+.fc .fc-col-header-cell-cushion {
   font-family: var(--font-secondary);
-  background: var(--gray-light);
-  border-radius: var(--radius-sm);
-  padding: 10px 4px;
-}
-.event-date .num {
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--dark);
-  line-height: 1;
-  display: block;
-}
-.event-date .mon {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--gray);
-  font-weight: 600;
+  font-weight: 700;
+  padding: 10px 4px;
+  text-decoration: none;
 }
-
-.event-info .title {
-  font-size: 1.02rem;
+.fc .fc-daygrid-day-number {
+  font-family: var(--font-secondary);
+  font-size: 12px;
   font-weight: 700;
   color: var(--dark);
-  margin-bottom: 4px;
-  letter-spacing: -0.01em;
+  text-decoration: none;
+  padding: 6px 8px;
 }
-.event-info .desc {
+.fc .fc-day-today { background: var(--gray-light) !important; }
+.fc-event {
+  border: none !important;
+  border-radius: 6px !important;
   font-family: var(--font-secondary);
-  font-size: 0.85rem;
-  color: var(--gray);
-  line-height: 1.6;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+.fc-daygrid-event-dot { display: none; }
+.fc-event.type-akademik { background: var(--purple) !important; color: var(--white) !important; }
+.fc-event.type-libur    { background: #ff4d6d !important; color: var(--white) !important; }
+.fc-event.type-acara    { background: var(--dark) !important; color: var(--white) !important; }
+.fc-event.type-ujian    { background: var(--yellow) !important; color: var(--dark) !important; }
+.fc .fc-daygrid-more-link {
+  font-family: var(--font-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--purple);
 }
 
-.event-tag {
+@media (max-width: 640px) {
+  .fc .fc-toolbar { flex-direction: column; gap: 12px; }
+  .fc .fc-toolbar-title { font-size: 1.05rem; }
+  .fc .fc-button { padding: 6px 12px; font-size: 0.82rem; }
+  .jenjang-tab-btn { font-size: 0.88rem; padding: 11px 22px; }
+  .month-nav-card select { min-width: 130px; font-size: 0.95rem; }
+}
+
+/* ===== Event detail popover ===== */
+.ev-modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(10,0,20,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+.ev-modal-backdrop.open { display: flex; }
+.ev-modal {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 28px 26px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.ev-modal-tag {
+  display: inline-block;
   font-family: var(--font-secondary);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding: 6px 14px;
+  text-transform: uppercase;
+  padding: 5px 13px;
   border-radius: 50px;
   color: var(--white);
-  white-space: nowrap;
-  text-transform: uppercase;
+  margin-bottom: 14px;
 }
-.event-tag.akademik { background: var(--purple); }
-.event-tag.libur { background: #ff4d6d; }
-.event-tag.acara { background: var(--dark); }
-.event-tag.ujian { background: var(--yellow); color: var(--dark); }
-
-.empty-state {
-  text-align: center;
-  padding: 40px 20px;
+.ev-modal-tag.akademik { background: var(--purple); }
+.ev-modal-tag.libur { background: #ff4d6d; }
+.ev-modal-tag.acara { background: var(--dark); }
+.ev-modal-tag.ujian { background: var(--yellow); color: var(--dark); }
+.ev-modal h3 {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.ev-modal p.date {
   font-family: var(--font-secondary);
-  color: var(--gray);
-  background: var(--gray-light);
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--purple);
+  margin-bottom: 4px;
 }
+.ev-modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-light);
+  color: var(--gray);
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.ev-modal-close:hover { background: var(--purple); color: var(--white); }
 
-.cal-footer {
+.cal-footer-note {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 40px;
   font-family: var(--font-secondary);
   font-size: 0.8rem;
   color: var(--gray);
 }
-
-@media (max-width: 768px) {
-  .section-pad { padding: 60px 0; }
-  .cell { min-height: 76px; padding: 6px; }
-  .chip { font-size: 9px; padding: 2px 5px; }
-  .daynum { font-size: 10.5px; }
-  .month-nav-card { gap: 12px; padding: 8px 10px; }
-  .month-nav select.current { font-size: 1rem; min-width: 110px; }
-  .month-pill { font-size: 0.72rem; padding: 7px 12px; }
-  .event-row { grid-template-columns: 56px 1fr; padding: 16px; }
-  .event-tag { grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
-  .event-date .num { font-size: 1.3rem; }
-  .jenjang-tab-btn { font-size: 0.88rem; padding: 11px 22px; }
-}
 </style>
 </head>
+
 <body>
 
-<section class="cal-hero">
-  <div class="container cal-hero-inner">
-    <span class="tag">Tahun Ajaran 2025/2026</span>
-    <h1 class="section-title">Kalender Akademik</h1>
-    <p class="section-subtitle">Jadwal kegiatan, ujian, dan hari libur Yayasan Transformasi sepanjang tahun — pilih jenjang lalu bulan untuk melihat agendanya.</p>
-    <div class="term-pill"><span></span> Semester Genap — Berlangsung</div>
-  </div>
-</section>
+  <!-- ========================
+      NAVBAR (identik dengan index.html)
+  ========================= -->
+  <header id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="/assets/logo.png" alt="Transformasi Logo" onerror="this.style.display='none'" />
+        </a>
 
-<section class="section-pad" style="padding-top:64px;">
-  <div class="container">
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html#about" data-en="About" data-id="Tentang Kami">Tentang Kami</a>
+          <a href="index.html#berita" data-en="News & Achievements" data-id="Berita & Prestasi">Berita & Prestasi</a>
+          <a href="index.html#ekskul" data-en="Extracurricular" data-id="Ekstrakurikuler">Ekstrakurikuler</a>
+          <a href="index.html#gallery" data-en="Gallery" data-id="Galeri">Galeri</a>
+          <a href="index.html#instagram" data-en="Social media" data-id="Media sosial">Instagram</a>
+          <a href="kalender.html" class="active" data-en="Calendar" data-id="Kalender">Kalender</a>
+        </nav>
 
-    <div class="jenjang-tabs">
-      <button class="jenjang-tab-btn active" onclick="switchJenjang('tk', this)">🎨 TK Transformasi</button>
-      <button class="jenjang-tab-btn" onclick="switchJenjang('sd', this)">📚 SD Transformasi</button>
-    </div>
-
-    <div class="month-nav">
-      <div class="month-nav-card">
-        <button id="prevBtn" aria-label="Bulan sebelumnya">‹</button>
-        <select class="current" id="monthSelect"></select>
-        <button id="nextBtn" aria-label="Bulan berikutnya">›</button>
+        <div class="nav-right">
+          <div class="lang-toggle">
+            <button class="lang-btn" id="langID" onclick="setLang('id')">ID</button>
+            <button class="lang-btn" id="langEN" onclick="setLang('en')">EN</button>
+          </div>
+          <a href="index.html#footer" class="nav-cta" data-en="Contact us" data-id="Kontak Kami">Kontak kami</a>
+          <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#about" onclick="toggleMobileMenu()" data-en="About" data-id="Tentang Kami">Tentang Kami</a>
+      <a href="index.html#berita" onclick="toggleMobileMenu()" data-en="News & Achievements" data-id="Berita & Prestasi">Berita &
+        Prestasi</a>
+      <a href="index.html#ekskul" onclick="toggleMobileMenu()" data-en="Extracurricular"
+        data-id="Ekstrakurikuler">Ekstrakurikuler</a>
+      <a href="index.html#gallery" onclick="toggleMobileMenu()" data-en="Gallery" data-id="Galeri">Galeri</a>
+      <a href="index.html#instagram" onclick="toggleMobileMenu()" data-en="Social media" data-id="Media Sosial">Media Sosial</a>
+      <a href="index.html#footer" onclick="toggleMobileMenu()" data-en="Contact Us" data-id="Kontak Kami">Kontak Kami</a>
+      <a href="kalender.html" class="active" data-en="Calendar" data-id="Kalender">Kalender</a>
+    </div>
+  </header>
 
-    <div class="month-strip" id="monthStrip"></div>
+  <!-- ========================
+      HERO KALENDER
+  ========================= -->
+  <section class="cal-hero">
+    <div class="container cal-hero-inner">
+      <a href="index.html" class="btn btn-outline" data-en="← Back to Home" data-id="← Kembali ke Beranda">← Kembali ke Beranda</a>
+      <br><br>
+      <span class="tag" data-en="School Year 2026/2027" data-id="Tahun Ajaran 2026/2027">Tahun Ajaran 2026/2027</span>
+      <h1 class="section-title" data-en="Academic Calendar" data-id="Kalender Akademik">Kalender Akademik</h1>
+      <!-- <p class="section-subtitle"
+        data-en="Schedule of activities, exams, and holidays for Transformasi Education Foundation throughout the school year — choose a level and month to view the agenda."
+        data-id="Jadwal kegiatan, ujian, dan hari libur Yayasan Transformasi sepanjang tahun ajaran — pilih jenjang dan bulan untuk melihat agendanya.">
+        Jadwal kegiatan, ujian, dan hari libur Yayasan Transformasi sepanjang tahun ajaran — pilih jenjang dan bulan
+        untuk melihat agendanya.</p> -->
+      <div class="term-pill"><span></span> Tahun Ajaran 2026/2027</div>
+    </div>
+  </section>
 
-    <div class="calendar">
-      <div class="dow-row">
-        <div>Min</div><div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+  <section class="section-pad" style="padding-top:64px;">
+    <div class="container">
+
+      <div class="jenjang-tabs">
+        <button class="jenjang-tab-btn active" data-jenjang="tk" onclick="switchJenjang('tk', this)">🎨 TK Transformasi</button>
+        <button class="jenjang-tab-btn" data-jenjang="sd" onclick="switchJenjang('sd', this)">📚 SD Transformasi</button>
       </div>
-      <div class="grid" id="calGrid"></div>
-    </div>
 
-    <div class="legend">
-      <span><i class="dot akademik"></i> Akademik</span>
-      <span><i class="dot ujian"></i> Ujian / Penilaian</span>
-      <span><i class="dot acara"></i> Acara Sekolah</span>
-      <span><i class="dot libur"></i> Libur</span>
-    </div>
+      <div class="month-nav">
+        <div class="month-nav-card">
+          <select id="monthSelect" aria-label="Pilih bulan"></select>
+        </div>
+      </div>
 
-    <div class="list-head">
-      <h2 id="listTitle">Agenda</h2>
-      <span class="count" id="evCount"></span>
-    </div>
-    <div id="eventList"></div>
+      <div class="legend">
+        <span><i class="dot akademik"></i> Akademik</span>
+        <span><i class="dot ujian"></i> Ujian / Penilaian</span>
+        <span><i class="dot acara"></i> Acara Sekolah</span>
+        <span><i class="dot libur"></i> Libur</span>
+      </div>
 
+      <div class="calendar-wrap">
+        <div id="calendar"></div>
+      </div>
+
+      <p class="cal-footer-note" id="calFooter">Kalender Pendidikan TK Transformasi — Tahun Ajaran 2026/2027</p>
+    </div>
+  </section>
+
+  <div class="ev-modal-backdrop" id="evModalBackdrop">
+    <div class="ev-modal">
+      <button class="ev-modal-close" id="evModalClose">✕</button>
+      <span class="ev-modal-tag" id="evModalTag"></span>
+      <h3 id="evModalTitle"></h3>
+      <p class="date" id="evModalDate"></p>
+    </div>
   </div>
-</section>
+
+  <!-- ========================
+      FOOTER (identik dengan index.html)
+  ========================= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px">
+            <img src="logo.png" alt="Logo" style="width:44px;height:44px;object-fit:contain"
+              onerror="this.style.display='none'" />
+            <div class="nav-logo-text">
+              <span class="nav-logo-name" data-en="TRANSFORMASI" data-id="TRANSFORMASI">Transformasi</span>
+              <span class="nav-logo-sub" data-en="Education Foundation" data-id="Yayasan Pendidikan">Yayasan
+                Pendidikan</span>
+            </div>
+          </div>
+          <p class="footer-desc"
+            data-en="Transformasi Education Foundation — Where education transforms lives. Home to TK Transformasi and SD Transformasi."
+            data-id="Yayasan Pendidikan Transformasi — Tempat pendidikan mengubah kehidupan. Rumah bagi TK Transformasi dan SD Transformasi.">
+            Yayasan Pendidikan Transformasi — Tempat pendidikan mengubah kehidupan. Rumah bagi TK Transformasi dan SD
+            Transformasi.
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/transformasi_kutaibarat?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              class="social-btn" title="Instagram">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="">
+            </a>
+            <a href="https://www.facebook.com/share/1ArKHrLhUh/?mibextid=wwXIfr" class="social-btn" title="Facebook">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="">
+            </a>
+            <a href="https://youtube.com/@yayasan.transformasi?si=5jV3IXL_Zh9Smd6K" class="social-btn" title="YouTube">
+              <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="">
+            </a>
+            <a href="https://www.tiktok.com/@yayasan_transformasi?is_from_webapp=1&sender_device=pc" class="social-btn"
+              title="Tiktok">
+              <img src="https://cdn-icons-png.flaticon.com/512/15713/15713399.png" alt="">
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Schools" data-id="Sekolah">Sekolah</h4>
+          <ul>
+            <li><a href="index.html" data-en="TK Transformasi" data-id="TK Transformasi">TK Transformasi</a></li>
+            <li><a href="index.html" data-en="SD Transformasi" data-id="SD Transformasi">SD Transformasi</a></li>
+            <li><a href="index.html#about" data-en="About Foundation" data-id="Tentang Yayasan">Tentang Yayasan</a></li>
+            <li><a href="index.html#ekskul" data-en="Extracurricular" data-id="Ekstrakurikuler">Ekstrakurikuler</a></li>
+            <li><a href="index.html#gallery" data-en="Gallery" data-id="Galeri">Galeri</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Information" data-id="Informasi">Informasi</h4>
+          <ul>
+            <li><a href="index.html#berita" data-en="News" data-id="Berita">Berita</a></li>
+            <li><a href="index.html#berita" data-en="Achievements" data-id="Prestasi">Prestasi</a></li>
+            <li><a href="index.html" data-en="Admission" data-id="Penerimaan Siswa">Penerimaan Siswa</a></li>
+            <li><a
+                href="https://www.instagram.com/transformasi_kutaibarat?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                data-en="Instagram" data-id="Instagram">Instagram</a></li>
+            <li><a href="index.html#partnership" data-en="Partners" data-id="Mitra">Mitra</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Contact" data-id="Kontak">Kontak</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📍</span>
+            <span
+              data-en="Jl. Mangku Aji No.RT. 1, Belempung Ulaq, Kec. Barong Tongkok, Kabupaten Kutai Barat, Kalimantan Timur 75776"
+              data-id="Jl. Mangku Aji No.RT. 1, Belempung Ulaq, Kec. Barong Tongkok, Kabupaten Kutai Barat, Kalimantan Timur 75776">Jl.
+              Pendidikan No. 1, Jakarta Selatan,
+              DKI Jakarta 12345</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📞</span>
+            <span>+62 819-5231-3687</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">✉️</span>
+            <span>info@transformasi.sch.id</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">🕐</span>
+            <span data-en="Mon–Fri, 07:00–16:00 WIB" data-id="Sen–Jum, 07:00–16:00 WIB">Sen–Jum, 07:00–16:00 WIB</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 <span>Yayasan Pendidikan Transformasi</span>. <span data-en="All Rights Reserved."
+            data-id="Hak Cipta Dilindungi.">Hak Cipta Dilindungi.</span></p>
+        <p data-en="TK Transformasi · SD Transformasi" data-id="TK Transformasi · SD Transformasi">TK Transformasi · SD
+          Transformasi</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button (identik dengan index.html) -->
+  <a href="https://wa.me/6281952313687?text=Halo%20Yayasan%20Transformasi!" target="_blank" class="floating-chat"
+    title="Chat WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" alt="">
+  </a>
+
+<!-- FullCalendar (bundle inti + locale Bahasa Indonesia) -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales-all.global.min.js"></script>
 
 <script>
 /* ====================================================================
    DUA SUMBER DATA TERPISAH: events.tk DAN events.sd
-   month: 0 = Januari ... 11 = Desember (sama seperti Date JS)
-   Tambah/ubah event tinggal edit array masing-masing jenjang di bawah ini.
-==================================================================== */
-const YEAR = 2026;
-const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-const typeLabel = { akademik: "Akademik", ujian: "Ujian", acara: "Acara", libur: "Libur" };
+   Tahun Ajaran 2026/2027 — Juli-Desember = tahun 2026, Januari-Juni = tahun 2027
+   Sumber: KALENDER_PEDIDIKAN_TK_TRANSFORMASI_2026-2027.xlsx
+           KALENDER_PEDIDIKAN_SD_TRANSFORMASI_2026-2027.xlsx
 
-const events = {
+   Catatan: FullCalendar memakai tanggal 'end' EKSKLUSIF untuk event
+   multi-hari (all-day), sehingga end = (tanggal terakhir + 1 hari).
+   Tipe: akademik | ujian | acara | libur — menentukan warna chip.
+==================================================================== */
+const rawEvents = {
 
   /* ============== JENJANG TK ============== */
   tk: [
-    // Januari
-    { month: 0, date: 5,  type: "akademik", title: "Awal Semester Genap", desc: "Kegiatan bermain & belajar TK dimulai kembali" },
-    { month: 0, date: 1,  type: "libur",    title: "Tahun Baru Masehi", desc: "Sekolah libur nasional" },
-    // Februari
-    { month: 1, date: 14, type: "acara",    title: "Hari Kasih Sayang Ceria", desc: "Kegiatan berbagi kartu & kue untuk teman sekelas" },
-    { month: 1, date: 17, type: "libur",    title: "Isra Mikraj", desc: "Sekolah libur nasional" },
-    // Maret
-    { month: 2, date: 9,  type: "akademik", title: "Penilaian Tengah Semester", desc: "Observasi perkembangan anak (motorik, sosial, kognitif)" },
-    { month: 2, date: 21, type: "libur",    title: "Hari Raya Nyepi", desc: "Sekolah libur nasional" },
-    // April
-    { month: 3, date: 10, type: "acara",    title: "Fun Day & Permainan Tradisional", desc: "Kegiatan luar ruang seluruh kelas TK" },
-    { month: 3, date: 21, type: "akademik", title: "Hari Kartini", desc: "Pawai kostum kebaya & kegiatan tematik" },
-    // Mei
-    { month: 4, date: 1,  type: "libur",    title: "Hari Buruh", desc: "Sekolah libur nasional" },
-    { month: 4, date: 2,  type: "akademik", title: "Hari Pendidikan Nasional", desc: "Kegiatan tematik mengenal jasa guru" },
-    { month: 4, date: 15, type: "acara",    title: "Field Trip ke Kebun Binatang Mini", desc: "Kunjungan edukatif bersama wali murid" },
-    // Juni
-    { month: 5, date: 1,  type: "akademik", title: "Awal Minggu Tenang", desc: "Persiapan menjelang penilaian akhir tahun" },
-    { month: 5, date: 3,  type: "ujian",    title: "Penilaian Perkembangan Anak (Hari 1)", desc: "Observasi kemampuan motorik halus & kasar" },
-    { month: 5, date: 4,  type: "ujian",    title: "Penilaian Perkembangan Anak (Hari 2)", desc: "Observasi kemampuan bahasa & sosial-emosional" },
-    { month: 5, date: 12, type: "akademik", title: "Rapat Wali Kelas", desc: "Pembahasan rekap perkembangan anak semester genap" },
-    { month: 5, date: 17, type: "libur",    title: "Hari Lahir Pancasila (cuti bersama)", desc: "Sekolah libur, kegiatan diliburkan" },
-    { month: 5, date: 19, type: "acara",    title: "Pentas Seni & Wisuda TK B", desc: "Aula sekolah, pukul 09.00 — seluruh siswa & wali murid" },
-    { month: 5, date: 21, type: "akademik", title: "Pembagian Buku Laporan Perkembangan", desc: "Pengambilan oleh orang tua/wali, pukul 08.00–12.00" },
-    { month: 5, date: 22, type: "libur",    title: "Awal Libur Semester", desc: "Libur kenaikan kelompok dimulai" },
-    // Juli
-    { month: 6, date: 13, type: "akademik", title: "Awal Tahun Ajaran Baru", desc: "Masa Orientasi & Pengenalan Sekolah (untuk anak baru)" },
-    { month: 6, date: 17, type: "acara",    title: "Hari Pertama Sekolah Ceria", desc: "Perkenalan guru, kelas, dan teman baru" },
-    // Agustus
-    { month: 7, date: 14, type: "acara",    title: "Lomba 17-an Mini", desc: "Lomba menggambar, mewarnai, dan estafet kelereng" },
-    { month: 7, date: 17, type: "libur",    title: "Hari Kemerdekaan RI", desc: "Upacara sederhana & dekorasi merah putih" },
-    // September
-    { month: 8, date: 14, type: "akademik", title: "Penilaian Tengah Semester Ganjil", desc: "Observasi perkembangan anak periode awal" },
-    { month: 8, date: 25, type: "acara",    title: "Cooking Class Mini", desc: "Kegiatan memasak sederhana bersama guru" },
-    // Oktober
-    { month: 9, date: 2,  type: "libur",    title: "Maulid Nabi Muhammad SAW", desc: "Sekolah libur nasional" },
-    { month: 9, date: 16, type: "acara",    title: "Pekan Buah & Sayur", desc: "Pengenalan gizi seimbang lewat permainan" },
-    // November
-    { month: 10, date: 10, type: "akademik", title: "Hari Pahlawan", desc: "Kegiatan tematik mengenal pahlawan" },
-    { month: 10, date: 25, type: "akademik", title: "Hari Guru Nasional", desc: "Kartu ucapan & persembahan untuk Bu/Pak Guru" },
-    // Desember
-    { month: 11, date: 1,  type: "ujian",    title: "Penilaian Perkembangan Anak (Hari 1)", desc: "Observasi kemampuan kognitif & bahasa" },
-    { month: 11, date: 2,  type: "ujian",    title: "Penilaian Perkembangan Anak (Hari 2)", desc: "Observasi kemampuan sosial-emosional & motorik" },
-    { month: 11, date: 19, type: "akademik", title: "Pembagian Buku Laporan Semester Ganjil", desc: "Pengambilan oleh orang tua/wali" },
-    { month: 11, date: 22, type: "libur",    title: "Libur Semester Ganjil", desc: "Libur akhir tahun dimulai" },
-    { month: 11, date: 25, type: "libur",    title: "Hari Raya Natal", desc: "Sekolah libur nasional" },
+    // Juli 2026
+    { title: "Orientasi Orang Tua", start: "2026-07-10", type: "acara" },
+    { title: "Hari Pertama Masuk Sekolah TA 2026/2027", start: "2026-07-13", type: "akademik" },
+    { title: "MPLS", start: "2026-07-14", end: "2026-08-01", type: "akademik" },
+    { title: "Ibadah Bersama Awal Semester", start: "2026-07-17", type: "acara" },
+    { title: "Hari Anak Nasional: Melukis Bersama di Kain", start: "2026-07-23", type: "acara" },
+    // Agustus 2026
+    { title: "Mulai Topik", start: "2026-08-03", type: "akademik" },
+    { title: "Mulai Ekstrakurikuler", start: "2026-08-07", type: "akademik" },
+    { title: "Hari Kemerdekaan Indonesia", start: "2026-08-17", type: "libur" },
+    { title: "Lomba Hari Kemerdekaan", start: "2026-08-22", type: "acara" },
+    { title: "Maulid Nabi Muhammad SAW", start: "2026-08-25", type: "libur" },
+    { title: "Sehari Berbudaya", start: "2026-08-28", type: "acara" },
+    { title: "Topik Baru", start: "2026-08-31", type: "akademik" },
+    // September 2026
+    { title: "Jalan Sehat", start: "2026-09-09", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2026-09-25", type: "acara" },
+    { title: "Swimming Day", start: "2026-09-26", type: "acara" },
+    // Oktober 2026
+    { title: "Hari Batik Nasional (Membatik Bersama)", start: "2026-10-02", type: "acara" },
+    { title: "Topik Baru", start: "2026-10-05", type: "akademik" },
+    { title: "Sehari Berbudaya", start: "2026-10-30", type: "acara" },
+    { title: "Sharing Session", start: "2026-10-31", type: "acara" },
+    // November 2026
+    { title: "Topik Baru", start: "2026-11-02", type: "akademik" },
+    { title: "Hari Pahlawan (Fashion Show bersama Ayah)", start: "2026-11-14", type: "acara" },
+    { title: "Akhir Ekstrakurikuler", start: "2026-11-20", type: "akademik" },
+    { title: "Hari Guru (Membuat Kartu Ucapan)", start: "2026-11-25", type: "acara" },
+    { title: "Field Trip", start: "2026-11-27", type: "acara" },
+    { title: "Happy Moments", start: "2026-11-30", end: "2026-12-11", type: "acara" },
+    // Desember 2026
+    { title: "Penerimaan Raport", start: "2026-12-11", type: "akademik" },
+    { title: "Evaluasi Pembelajaran Semester I", start: "2026-12-12", type: "akademik" },
+    { title: "Libur Semester Ganjil", start: "2026-12-14", type: "libur" },
+    { title: "Hari Raya Natal", start: "2026-12-25", type: "libur" },
+    // Januari 2027
+    { title: "Tahun Baru Masehi", start: "2027-01-01", type: "libur" },
+    { title: "Persiapan Semester II", start: "2027-01-04", end: "2027-01-09", type: "akademik" },
+    { title: "Isra Mikraj Nabi Muhammad SAW", start: "2027-01-05", type: "libur" },
+    { title: "Awal Masuk Sekolah Semester Genap", start: "2027-01-11", type: "akademik" },
+    { title: "MPLS Semester 2", start: "2027-01-12", end: "2027-01-30", type: "akademik" },
+    { title: "Ibadah Bersama Awal Semester", start: "2027-01-15", type: "acara" },
+    { title: "Hari Gizi Nasional (Masak Bersama)", start: "2027-01-25", type: "acara" },
+    // Februari 2027
+    { title: "Mulai Topik", start: "2027-02-01", type: "akademik" },
+    { title: "Mulai Ekstrakurikuler", start: "2027-02-05", type: "akademik" },
+    { title: "Valentine (Tukar Kado)", start: "2027-02-15", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2027-02-26", type: "acara" },
+    // Maret 2027
+    { title: "Topik Baru", start: "2027-03-01", type: "akademik" },
+    { title: "Hari Raya Idul Fitri 1448 H", start: "2027-03-09", end: "2027-03-11", type: "libur" },
+    { title: "Sehari Berbudaya", start: "2027-03-19", type: "acara" },
+    { title: "Jumat Agung", start: "2027-03-26", type: "libur" },
+    { title: "Hari Paskah", start: "2027-03-28", type: "libur" },
+    { title: "Lomba Paskah (Membuat Mahkota & Egg Hunt)", start: "2027-03-29", type: "acara" },
+    // April 2027
+    { title: "Topik Baru", start: "2027-04-05", type: "akademik" },
+    { title: "Sharing Session", start: "2027-04-17", type: "acara" },
+    { title: "Hari Kartini (Fashion Show Kostum Cita-Cita)", start: "2027-04-21", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2027-04-23", type: "acara" },
+    { title: "Swimming Day", start: "2027-04-24", type: "acara" },
+    // Mei 2027
+    { title: "Hari Buruh Internasional", start: "2027-05-01", type: "libur" },
+    { title: "Topik Baru & Hari Pendidikan Nasional", start: "2027-05-03", type: "acara" },
+    { title: "Kenaikan Yesus Kristus", start: "2027-05-06", type: "libur" },
+    { title: "Hari Ibu Internasional (Membuat Kartu Ucapan)", start: "2027-05-10", type: "acara" },
+    { title: "Hari Keluarga Internasional (Piknik)", start: "2027-05-15", type: "acara" },
+    { title: "Field Trip", start: "2027-05-21", type: "acara" },
+    { title: "Hari Raya Waisak", start: "2027-05-22", type: "libur" },
+    { title: "Happy Moments", start: "2027-05-24", end: "2027-06-12", type: "acara" },
+    { title: "Hari Raya Iduladha", start: "2027-05-27", type: "libur" },
+    // Juni 2027
+    { title: "Hari Lahir Pancasila", start: "2027-06-01", type: "libur" },
+    { title: "Pelepasan TK B", start: "2027-06-12", type: "acara" },
+    { title: "Penerimaan Raport", start: "2027-06-14", type: "akademik" },
+    { title: "Evaluasi Pembelajaran Semester II", start: "2027-06-15", type: "akademik" },
+    { title: "Mulai Libur Akhir Semester II", start: "2027-06-15", type: "libur" },
   ],
 
   /* ============== JENJANG SD ============== */
   sd: [
-    // Januari
-    { month: 0, date: 5,  type: "akademik", title: "Awal Semester Genap", desc: "Kegiatan belajar mengajar dimulai kembali" },
-    { month: 0, date: 1,  type: "libur",    title: "Tahun Baru Masehi", desc: "Sekolah libur nasional" },
-    // Februari
-    { month: 1, date: 17, type: "libur",    title: "Isra Mikraj", desc: "Sekolah libur nasional" },
-    { month: 1, date: 20, type: "akademik", title: "Try Out Tahap 1", desc: "Persiapan ujian untuk kelas akhir" },
-    // Maret
-    { month: 2, date: 9,  type: "akademik", title: "Ujian Tengah Semester", desc: "UTS berlangsung selama satu minggu" },
-    { month: 2, date: 21, type: "libur",    title: "Hari Raya Nyepi", desc: "Sekolah libur nasional" },
-    // April
-    { month: 3, date: 10, type: "acara",    title: "Class Meeting", desc: "Kegiatan lomba antar kelas pasca UTS" },
-    { month: 3, date: 21, type: "akademik", title: "Hari Kartini", desc: "Upacara dan kegiatan tematik di sekolah" },
-    // Mei
-    { month: 4, date: 1,  type: "libur",    title: "Hari Buruh", desc: "Sekolah libur nasional" },
-    { month: 4, date: 2,  type: "akademik", title: "Hari Pendidikan Nasional", desc: "Upacara bendera dan apresiasi guru" },
-    { month: 4, date: 20, type: "ujian",    title: "Simulasi Ujian Sekolah", desc: "Gladi bersih sebelum ujian akhir" },
-    // Juni
-    { month: 5, date: 1,  type: "akademik", title: "Awal Minggu Tenang", desc: "Persiapan menjelang penilaian akhir tahun" },
-    { month: 5, date: 3,  type: "ujian",    title: "Penilaian Akhir Tahun (Hari 1)", desc: "Mapel: Matematika & Bahasa Indonesia" },
-    { month: 5, date: 4,  type: "ujian",    title: "Penilaian Akhir Tahun (Hari 2)", desc: "Mapel: IPA & IPS" },
-    { month: 5, date: 5,  type: "ujian",    title: "Penilaian Akhir Tahun (Hari 3)", desc: "Mapel: Bahasa Inggris & PJOK" },
-    { month: 5, date: 12, type: "akademik", title: "Rapat Wali Kelas", desc: "Pembahasan rekap nilai semester genap" },
-    { month: 5, date: 17, type: "libur",    title: "Hari Lahir Pancasila (cuti bersama)", desc: "Sekolah libur, kegiatan belajar diliburkan" },
-    { month: 5, date: 19, type: "acara",    title: "Pentas Seni Akhir Tahun", desc: "Aula sekolah, pukul 09.00 — seluruh siswa & wali murid" },
-    { month: 5, date: 21, type: "akademik", title: "Pembagian Rapor", desc: "Pengambilan rapor oleh orang tua/wali, pukul 08.00–12.00" },
-    { month: 5, date: 22, type: "libur",    title: "Awal Libur Semester", desc: "Libur kenaikan kelas dimulai" },
-    // Juli
-    { month: 6, date: 13, type: "akademik", title: "Awal Tahun Ajaran Baru", desc: "Masa Pengenalan Lingkungan Sekolah (MPLS)" },
-    { month: 6, date: 17, type: "acara",    title: "Pawai Tahun Ajaran Baru", desc: "Kegiatan pengenalan ekstrakurikuler" },
-    // Agustus
-    { month: 7, date: 17, type: "libur",    title: "Hari Kemerdekaan RI", desc: "Upacara bendera & lomba 17-an" },
-    // September
-    { month: 8, date: 14, type: "akademik", title: "Penilaian Tengah Semester", desc: "PTS Ganjil berlangsung satu minggu" },
-    // Oktober
-    { month: 9, date: 2,  type: "libur",    title: "Maulid Nabi Muhammad SAW", desc: "Sekolah libur nasional" },
-    { month: 9, date: 25, type: "acara",    title: "Bulan Bahasa", desc: "Lomba pidato dan menulis antar kelas" },
-    // November
-    { month: 10, date: 10, type: "akademik", title: "Hari Pahlawan", desc: "Upacara dan kegiatan tematik" },
-    { month: 10, date: 25, type: "akademik", title: "Hari Guru Nasional", desc: "Apresiasi untuk seluruh tenaga pendidik" },
-    // Desember
-    { month: 11, date: 1,  type: "ujian",    title: "Penilaian Akhir Semester (Hari 1)", desc: "Mapel: Matematika & Bahasa Indonesia" },
-    { month: 11, date: 2,  type: "ujian",    title: "Penilaian Akhir Semester (Hari 2)", desc: "Mapel: IPA & IPS" },
-    { month: 11, date: 19, type: "akademik", title: "Pembagian Rapor Semester Ganjil", desc: "Pengambilan rapor oleh orang tua/wali" },
-    { month: 11, date: 22, type: "libur",    title: "Libur Semester Ganjil", desc: "Libur akhir tahun dimulai" },
-    { month: 11, date: 25, type: "libur",    title: "Hari Raya Natal", desc: "Sekolah libur nasional" },
+    // Juli 2026
+    { title: "Orientasi Orang Tua Kelas 1A & 1B", start: "2026-07-11", type: "acara" },
+    { title: "Hari Pertama Masuk Sekolah TA 2026/2027", start: "2026-07-13", type: "akademik" },
+    { title: "MPLS (Masa Pengenalan Lingkungan Sekolah)", start: "2026-07-13", end: "2026-07-18", type: "akademik" },
+    { title: "Parenting Kelas 2-5", start: "2026-07-14", end: "2026-07-18", type: "acara" },
+    { title: "Ibadah Bersama Awal Semester", start: "2026-07-17", type: "acara" },
+    { title: "Parenting Kelas 6", start: "2026-07-18", type: "acara" },
+    { title: "Hari Anak Nasional", start: "2026-07-23", type: "acara" },
+    // Agustus 2026
+    { title: "Mulai Ekstrakurikuler", start: "2026-08-03", type: "akademik" },
+    { title: "Hari Pramuka (Upacara)", start: "2026-08-14", type: "acara" },
+    { title: "Hari Kemerdekaan Indonesia (Upacara)", start: "2026-08-17", type: "libur" },
+    { title: "Field Trip Kelas 1", start: "2026-08-20", type: "acara" },
+    { title: "Lomba Hari Kemerdekaan", start: "2026-08-22", type: "acara" },
+    { title: "Maulid Nabi Muhammad SAW (Libur)", start: "2026-08-25", type: "libur" },
+    { title: "Sehari Berbudaya", start: "2026-08-28", type: "acara" },
+    // September 2026
+    { title: "Hari Olahraga (Jalan Sehat)", start: "2026-09-09", type: "acara" },
+    { title: "Outbond Kelas 1 dan 2", start: "2026-09-19", type: "acara" },
+    { title: "Field Trip Kelas 2", start: "2026-09-24", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2026-09-25", type: "acara" },
+    // Oktober 2026
+    { title: "Hari Kesaktian Pancasila", start: "2026-10-01", type: "acara" },
+    { title: "Hari Batik Nasional (Membatik Bersama)", start: "2026-10-02", type: "acara" },
+    { title: "Kamp Kelas Atas", start: "2026-10-02", end: "2026-10-04", type: "acara" },
+    { title: "Field Trip Kelas 3", start: "2026-10-22", type: "acara" },
+    { title: "Hari Sumpah Pemuda", start: "2026-10-28", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2026-10-30", type: "acara" },
+    { title: "Sharing Session", start: "2026-10-31", type: "acara" },
+    // November 2026
+    { title: "Field Trip Kelas 4, 5, 6", start: "2026-11-05", type: "acara" },
+    { title: "Akhir Ekstrakurikuler", start: "2026-11-07", type: "akademik" },
+    { title: "Share Kisi-Kisi ke Grup Kelas", start: "2026-11-09", end: "2026-11-14", type: "akademik" },
+    { title: "Hari Pahlawan", start: "2026-11-10", type: "acara" },
+    { title: "Peringatan Hari Pahlawan", start: "2026-11-14", type: "acara" },
+    { title: "Pembahasan Kisi-Kisi AS 1", start: "2026-11-16", end: "2026-11-21", type: "akademik" },
+    { title: "Pelaksanaan AS 1", start: "2026-11-23", end: "2026-11-28", type: "ujian" },
+    { title: "Hari Guru", start: "2026-11-25", type: "acara" },
+    { title: "Happy Moments", start: "2026-11-30", end: "2026-12-11", type: "acara" },
+    // Desember 2026
+    { title: "Penerimaan Rapor", start: "2026-12-11", type: "akademik" },
+    { title: "Evaluasi Pembelajaran Semester I untuk Guru", start: "2026-12-12", type: "akademik" },
+    { title: "Libur Semester Ganjil", start: "2026-12-14", type: "libur" },
+    { title: "Hari Raya Natal", start: "2026-12-25", type: "libur" },
+    // Januari 2027
+    { title: "Tahun Baru Masehi", start: "2027-01-01", type: "libur" },
+    { title: "Persiapan Semester II", start: "2027-01-04", end: "2027-01-09", type: "akademik" },
+    { title: "Isra Mikraj Nabi Muhammad SAW", start: "2027-01-05", type: "libur" },
+    { title: "Awal Masuk Sekolah Semester Genap", start: "2027-01-11", type: "akademik" },
+    { title: "Ibadah Bersama Awal Semester", start: "2027-01-15", type: "acara" },
+    { title: "Hari Gizi Nasional", start: "2027-01-25", type: "acara" },
+    { title: "Christmas Concert", start: "2027-01-29", type: "acara" },
+    // Februari 2027
+    { title: "Mulai Ekstrakurikuler", start: "2027-02-01", type: "akademik" },
+    { title: "Kamp Kelas Bawah", start: "2027-02-13", type: "acara" },
+    { title: "Valentine (Tukar Kado)", start: "2027-02-15", type: "acara" },
+    { title: "Field Trip Kelas 1", start: "2027-02-18", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2027-02-26", type: "acara" },
+    // Maret 2027
+    { title: "Hari Raya Idul Fitri 1448 H", start: "2027-03-10", end: "2027-03-12", type: "libur" },
+    { title: "Field Trip Kelas 2", start: "2027-03-18", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2027-03-19", type: "acara" },
+    { title: "Jumat Agung", start: "2027-03-26", type: "libur" },
+    { title: "Hari Paskah", start: "2027-03-28", type: "libur" },
+    { title: "Lomba Paskah", start: "2027-03-29", type: "acara" },
+    { title: "Pelaksanaan TKA", start: "2027-03-30", end: "2027-04-01", type: "ujian" },
+    // April 2027
+    { title: "Field Trip Kelas 3", start: "2027-04-15", type: "acara" },
+    { title: "Sharing Session", start: "2027-04-17", type: "acara" },
+    { title: "Share Kisi-Kisi ke Grup Kelas 6", start: "2027-04-19", end: "2027-04-24", type: "akademik" },
+    { title: "Hari Kartini", start: "2027-04-21", type: "acara" },
+    { title: "Sehari Berbudaya", start: "2027-04-23", type: "acara" },
+    { title: "Pembahasan Kisi-Kisi Ujian Akhir Kelas 6", start: "2027-04-26", end: "2027-05-01", type: "akademik" },
+    // Mei 2027
+    { title: "Hari Buruh Internasional", start: "2027-05-01", type: "libur" },
+    { title: "Hari Pendidikan Nasional", start: "2027-05-02", type: "acara" },
+    { title: "Ujian Akhir Kelas 6", start: "2027-05-03", end: "2027-05-11", type: "ujian" },
+    { title: "Kenaikan Yesus Kristus", start: "2027-05-06", type: "libur" },
+    { title: "Share Kisi-Kisi ke Grup Kelas", start: "2027-05-11", end: "2027-05-15", type: "akademik" },
+    { title: "Akhir Ekstrakurikuler", start: "2027-05-14", type: "akademik" },
+    { title: "Hari Keluarga Internasional (Piknik)", start: "2027-05-15", type: "acara" },
+    { title: "Pembahasan Kisi-Kisi AS 2", start: "2027-05-17", end: "2027-05-22", type: "akademik" },
+    { title: "Hari Raya Waisak", start: "2027-05-22", type: "libur" },
+    { title: "Pelaksanaan AS 2", start: "2027-05-24", end: "2027-06-01", type: "ujian" },
+    { title: "Hari Raya Iduladha", start: "2027-05-27", type: "libur" },
+    // Juni 2027
+    { title: "Hari Lahir Pancasila", start: "2027-06-01", type: "libur" },
+    { title: "Happy Moments", start: "2027-06-01", end: "2027-06-12", type: "acara" },
+    { title: "Pelepasan Kelas 6", start: "2027-06-12", type: "acara" },
+    { title: "Penerimaan Rapor", start: "2027-06-14", type: "akademik" },
+    { title: "Evaluasi Pembelajaran Semester II untuk Guru", start: "2027-06-15", type: "akademik" },
+    { title: "Mulai Libur Akhir Semester II", start: "2027-06-15", type: "libur" },
   ]
 };
 
+const typeLabel = { akademik: "Akademik", ujian: "Ujian / Penilaian", acara: "Acara Sekolah", libur: "Libur" };
+const jenjangLabel = { tk: "TK", sd: "SD" };
+const monthNamesId = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+
+/* Bulan yang tersedia untuk tahun ajaran 2026/2027: Juli 2026 - Juni 2027 */
+const availableMonths = [
+  { year: 2026, month: 6 }, { year: 2026, month: 7 }, { year: 2026, month: 8 },
+  { year: 2026, month: 9 }, { year: 2026, month: 10 }, { year: 2026, month: 11 },
+  { year: 2027, month: 0 }, { year: 2027, month: 1 }, { year: 2027, month: 2 },
+  { year: 2027, month: 3 }, { year: 2027, month: 4 }, { year: 2027, month: 5 },
+];
+
+function toFcEvents(list) {
+  return list.map(e => ({
+    title: e.title,
+    start: e.start,
+    end: e.end,
+    allDay: true,
+    classNames: ["type-" + e.type],
+    extendedProps: { type: e.type }
+  }));
+}
+
 let currentJenjang = 'tk';
-let currentMonth = 5; // default tampil Juni
+let calendar;
 
-/* ---- Switch jenjang TK / SD ---- */
-function switchJenjang(jenjang, btn) {
-  currentJenjang = jenjang;
-  document.querySelectorAll('.jenjang-tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  buildMonthStrip();
-  render();
-}
+document.addEventListener('DOMContentLoaded', function() {
+  const calendarEl = document.getElementById('calendar');
+  const modalBackdrop = document.getElementById('evModalBackdrop');
+  const modalTag = document.getElementById('evModalTag');
+  const modalTitle = document.getElementById('evModalTitle');
+  const modalDate = document.getElementById('evModalDate');
+  const modalClose = document.getElementById('evModalClose');
+  const monthSelect = document.getElementById('monthSelect');
+  const calFooter = document.getElementById('calFooter');
 
-/* ---- Populate dropdown bulan (statis, tidak berubah per jenjang) ---- */
-const monthSelect = document.getElementById('monthSelect');
-monthNames.forEach((name, i) => {
-  const opt = document.createElement('option');
-  opt.value = i;
-  opt.textContent = name + ' ' + YEAR;
-  monthSelect.appendChild(opt);
-});
-
-/* ---- Build ulang strip 12 bulan sesuai jenjang aktif (titik event beda tiap jenjang) ---- */
-function buildMonthStrip() {
-  const monthStrip = document.getElementById('monthStrip');
-  monthStrip.innerHTML = '';
-  const activeEvents = events[currentJenjang];
-  monthNames.forEach((name, i) => {
-    const hasEvents = activeEvents.some(e => e.month === i);
-    const pill = document.createElement('button');
-    pill.className = 'month-pill';
-    pill.dataset.month = i;
-    pill.innerHTML = name.slice(0,3) + (hasEvents ? '<span class="ev-dot"></span>' : '');
-    pill.addEventListener('click', () => { currentMonth = i; render(); });
-    monthStrip.appendChild(pill);
-  });
-}
-
-document.getElementById('prevBtn').addEventListener('click', () => {
-  currentMonth = (currentMonth + 11) % 12;
-  render();
-});
-document.getElementById('nextBtn').addEventListener('click', () => {
-  currentMonth = (currentMonth + 1) % 12;
-  render();
-});
-monthSelect.addEventListener('change', (e) => {
-  currentMonth = parseInt(e.target.value, 10);
-  render();
-});
-
-/* ---- Fungsi render generik: dipanggil ulang untuk jenjang & bulan manapun ---- */
-function render() {
-  monthSelect.value = currentMonth;
-
-  document.querySelectorAll('.month-pill').forEach(p => {
-    p.classList.toggle('active', parseInt(p.dataset.month, 10) === currentMonth);
+  /* isi dropdown bulan (Juli 2026 - Juni 2027) */
+  availableMonths.forEach((m, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = monthNamesId[m.month] + ' ' + m.year;
+    monthSelect.appendChild(opt);
   });
 
-  const activeEvents = events[currentJenjang];
-  const monthEvents = activeEvents.filter(e => e.month === currentMonth);
-  const daysInMonth = new Date(YEAR, currentMonth + 1, 0).getDate();
-  const firstWeekday = new Date(YEAR, currentMonth, 1).getDay();
-
-  // grid kalender
-  const grid = document.getElementById('calGrid');
-  let html = '';
-  for (let i = 0; i < firstWeekday; i++) html += `<div class="cell empty"></div>`;
-
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dayEvents = monthEvents.filter(e => e.date === d);
-    const weekday = (firstWeekday + d - 1) % 7;
-    const isWeekend = weekday === 0 || weekday === 6;
-    const classes = ['cell'];
-    if (dayEvents.length) classes.push('has-event');
-    if (isWeekend) classes.push('weekend');
-    const chips = dayEvents.map(e => `<span class="chip ${e.type}">${e.title}</span>`).join('');
-    html += `<div class="${classes.join(' ')}"><span class="daynum">${d}</span>${chips}</div>`;
+  function formatRange(start, end) {
+    const s = new Date(start);
+    const eDisplay = end ? new Date(end.getTime() - 86400000) : s;
+    const sameDay = s.toDateString() === eDisplay.toDateString();
+    if (sameDay) return `${s.getDate()} ${monthNamesId[s.getMonth()]} ${s.getFullYear()}`;
+    if (s.getMonth() === eDisplay.getMonth() && s.getFullYear() === eDisplay.getFullYear()) {
+      return `${s.getDate()}–${eDisplay.getDate()} ${monthNamesId[s.getMonth()]} ${s.getFullYear()}`;
+    }
+    return `${s.getDate()} ${monthNamesId[s.getMonth()]} ${s.getFullYear()} – ${eDisplay.getDate()} ${monthNamesId[eDisplay.getMonth()]} ${eDisplay.getFullYear()}`;
   }
 
-  const totalCells = firstWeekday + daysInMonth;
-  const trailing = (7 - (totalCells % 7)) % 7;
-  for (let i = 0; i < trailing; i++) html += `<div class="cell empty"></div>`;
-  grid.innerHTML = html;
-
-  // daftar agenda
-  const jenjangLabel = currentJenjang === 'tk' ? 'TK' : 'SD';
-  document.getElementById('listTitle').textContent = `Agenda ${jenjangLabel} — ${monthNames[currentMonth]}`;
-  document.getElementById('evCount').textContent = monthEvents.length + ' kegiatan';
-
-  const list = document.getElementById('eventList');
-  if (monthEvents.length === 0) {
-    list.innerHTML = `<div class="empty-state">Belum ada agenda yang dijadwalkan di bulan ini.</div>`;
-    return;
+  function findMonthIndex(date) {
+    return availableMonths.findIndex(m => m.year === date.getFullYear() && m.month === date.getMonth());
   }
-  list.innerHTML = monthEvents
-    .sort((a,b) => a.date - b.date)
-    .map(e => `
-      <div class="event-row ${e.type}">
-        <div class="event-date"><span class="num">${e.date}</span><span class="mon">${monthNames[currentMonth].slice(0,3)}</span></div>
-        <div class="event-info">
-          <p class="title">${e.title}</p>
-          <p class="desc">${e.desc}</p>
-        </div>
-        <div class="event-tag ${e.type}">${typeLabel[e.type]}</div>
-      </div>
-    `).join('');
-}
 
-buildMonthStrip();
-render();
+  calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    initialDate: '2026-07-13',
+    locale: 'id',
+    height: 'auto',
+    firstDay: 1,
+    /* Kunci rentang navigasi: tidak bisa mundur sebelum Juli 2026
+       atau maju setelah Juni 2027. 'end' bersifat eksklusif. */
+    validRange: {
+      start: '2026-07-01',
+      end: '2027-07-01'
+    },
+    headerToolbar: {
+      left: 'prev,next',
+      center: 'title',
+      right: ''
+    },
+    dayMaxEventRows: 3,
+    events: toFcEvents(rawEvents[currentJenjang]),
+    datesSet: function(info) {
+      // sinkronkan dropdown ketika navigasi lewat tombol prev/next
+      const idx = findMonthIndex(info.view.currentStart);
+      if (idx !== -1) monthSelect.value = idx;
+    },
+    eventClick: function(info) {
+      const type = info.event.extendedProps.type;
+      modalTag.textContent = typeLabel[type];
+      modalTag.className = "ev-modal-tag " + type;
+      modalTitle.textContent = info.event.title;
+      modalDate.textContent = formatRange(info.event.start, info.event.end);
+      modalBackdrop.classList.add('open');
+    }
+  });
+
+  calendar.render();
+
+  monthSelect.addEventListener('change', (e) => {
+    const m = availableMonths[parseInt(e.target.value, 10)];
+    calendar.gotoDate(new Date(m.year, m.month, 1));
+  });
+
+  modalClose.addEventListener('click', () => modalBackdrop.classList.remove('open'));
+  modalBackdrop.addEventListener('click', (e) => {
+    if (e.target === modalBackdrop) modalBackdrop.classList.remove('open');
+  });
+
+  /* switch jenjang TK / SD */
+  window.switchJenjang = function(jenjang, btn) {
+    currentJenjang = jenjang;
+    document.querySelectorAll('.jenjang-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    calFooter.textContent = `Kalender Pendidikan ${jenjangLabel[jenjang]} Transformasi — Tahun Ajaran 2026/2027`;
+    calendar.removeAllEventSources();
+    calendar.addEventSource(toFcEvents(rawEvents[currentJenjang]));
+  };
+});
 </script>
+
+<!-- script.js: menyediakan setLang(), toggleMobileMenu(), reveal animation, dsb — sama seperti index.html -->
+<script src="script.js"></script>
 </body>
 </html>
