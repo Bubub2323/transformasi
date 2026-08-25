@@ -344,6 +344,11 @@ function switchGuruTab(tab, btn) {
   document.querySelectorAll('.guru-tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   btn.classList.add('active');
+
+  // re-ukur & re-init carousel begitu tab-nya BENERAN kelihatan
+  requestAnimationFrame(() => {
+    initInfiniteCarousel('track-' + tab, true); // true = paksa re-init
+  });
 }
 
 // Simpan track mana yang sudah di-init biar tidak double-duplicate
@@ -353,13 +358,12 @@ const initializedCarousels = new Set();
 function initInfiniteCarousel(trackId) {
   const track = document.getElementById(trackId);
   if (!track) return;
-  if (initializedCarousels.has(trackId)) return; // guard: cegah duplikasi kartu
+  if (initializedCarousels.has(trackId)) return;
   initializedCarousels.add(trackId);
 
   const cards = track.querySelectorAll('.guru-card');
   if (!cards.length) return;
 
-  // Ukur lebar kartu asli dari DOM (bukan hardcode), termasuk gap
   const trackStyle = window.getComputedStyle(track);
   const gap = parseFloat(trackStyle.columnGap || trackStyle.gap || '20') || 20;
   const firstCardRect = cards[0].getBoundingClientRect();
@@ -367,16 +371,18 @@ function initInfiniteCarousel(trackId) {
 
   const totalOriginal = cards.length;
 
-  // Duplikasi 4x biar loop panjang & mulus
   const original = track.innerHTML;
   track.innerHTML = original + original + original + original;
 
   const loopWidth = cardWidth * totalOriginal;
 
-  // Inject CSS animation dinamis
   const styleId = 'carousel-style-' + trackId;
   const existing = document.getElementById(styleId);
   if (existing) existing.remove();
+
+  // GANTI: kecepatan tetap (px/detik), bukan "3 detik per kartu"
+  const PX_PER_SECOND = 50; // <-- angka ini yang atur cepat/lambat, naikin kalau masih pengen lebih cepet
+  const duration = loopWidth / PX_PER_SECOND;
 
   const style = document.createElement('style');
   style.id = styleId;
@@ -384,7 +390,7 @@ function initInfiniteCarousel(trackId) {
     #${trackId} {
       display: flex;
       will-change: transform;
-      animation: scroll-${trackId} ${Math.max(totalOriginal * 3, 10)}s linear infinite;
+      animation: scroll-${trackId} ${duration}s linear infinite;
     }
     @keyframes scroll-${trackId} {
       0%   { transform: translateX(0); }
