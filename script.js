@@ -351,15 +351,34 @@ function switchGuruTab(tab, btn) {
   });
 }
 
-// Simpan track mana yang sudah di-init biar tidak double-duplicate
-// kalau initInfiniteCarousel ke-panggil lebih dari sekali.
+// Simpan track mana yang SUDAH BERHASIL di-init dengan ukuran valid.
 const initializedCarousels = new Set();
+// Simpan HTML asli (belum diduplikasi) tiap track, diambil sekali saja.
+const originalTrackHTML = new Map();
 
-function initInfiniteCarousel(trackId) {
+function initInfiniteCarousel(trackId, force = false) {
   const track = document.getElementById(trackId);
   if (!track) return;
-  if (initializedCarousels.has(trackId)) return;
-  initializedCarousels.add(trackId);
+
+  // Kalau sudah pernah sukses di-init dan bukan force-refresh, skip.
+  if (initializedCarousels.has(trackId) && !force) return;
+
+  // Track masih tersembunyi (tab belum aktif) -> width akan 0, jangan init dulu.
+  // Tandai belum initialized supaya nanti bisa dicoba lagi saat tab dibuka.
+  const isVisible = track.offsetParent !== null && track.getBoundingClientRect().width > 0;
+  if (!isVisible) {
+    initializedCarousels.delete(trackId);
+    return;
+  }
+
+  // Simpan HTML asli sekali saja (sebelum diduplikasi pertama kali).
+  if (!originalTrackHTML.has(trackId)) {
+    originalTrackHTML.set(trackId, track.innerHTML);
+  }
+
+  // Selalu mulai ulang dari HTML asli biar tidak dobel-dobel tiap re-init.
+  const original = originalTrackHTML.get(trackId);
+  track.innerHTML = original;
 
   const cards = track.querySelectorAll('.guru-card');
   if (!cards.length) return;
@@ -369,9 +388,14 @@ function initInfiniteCarousel(trackId) {
   const firstCardRect = cards[0].getBoundingClientRect();
   const cardWidth = firstCardRect.width + gap;
 
-  const totalOriginal = cards.length;
+  // Guard tambahan: kalau lebar masih 0 (misal font/gambar belum layout), coba lagi frame berikutnya.
+  if (cardWidth <= gap) {
+    track.innerHTML = original; // pastikan tidak nyangkut dalam kondisi aneh
+    requestAnimationFrame(() => initInfiniteCarousel(trackId, true));
+    return;
+  }
 
-  const original = track.innerHTML;
+  const totalOriginal = cards.length;
   track.innerHTML = original + original + original + original;
 
   const loopWidth = cardWidth * totalOriginal;
@@ -380,7 +404,6 @@ function initInfiniteCarousel(trackId) {
   const existing = document.getElementById(styleId);
   if (existing) existing.remove();
 
-  // GANTI: kecepatan tetap (px/detik), bukan "3 detik per kartu"
   const PX_PER_SECOND = 50; // <-- angka ini yang atur cepat/lambat, naikin kalau masih pengen lebih cepet
   const duration = loopWidth / PX_PER_SECOND;
 
@@ -401,11 +424,11 @@ function initInfiniteCarousel(trackId) {
     }
   `;
   document.head.appendChild(style);
+
+  initializedCarousels.add(trackId);
 }
 
-// Pakai DOMContentLoaded (bukan 'load') supaya carousel langsung jalan
-// tanpa nunggu semua gambar/embed eksternal selesai dimuat.
 document.addEventListener('DOMContentLoaded', () => {
-  initInfiniteCarousel('track-sd');
+  initInfiniteCarousel('track-sd'); // akan di-skip kalau tab ini belum aktif, tidak masalah
   initInfiniteCarousel('track-tk');
 });

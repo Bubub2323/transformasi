@@ -9,6 +9,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
   <style>
     /* Page hero banner */
+   
+    /* Page hero banner */
     .page-hero {
       background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 60%, #1a003a 100%);
       padding: 140px 0 80px;
@@ -56,14 +58,56 @@
     .breadcrumb a:hover { text-decoration: underline; }
     .breadcrumb span { color: rgba(255,255,255,0.3); }
 
-    /* Extended news grid */
+    /* Extended news grid 2x2 Presisi */
     .news-grid-extended {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important; /* Murni 2 kolom seimbang */
+      gap: 28px !important;
     }
-    @media (max-width: 1024px) { .news-grid-extended { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px)  { .news-grid-extended { grid-template-columns: 1fr; } }
+
+    /* Paksa semua kartu berita (termasuk kartu 1) untuk berukuran sama persis */
+    .news-grid-extended .news-card {
+      grid-column: span 1 !important; /* Matikan pelebaran kolom */
+      grid-row: span 1 !important;    /* Matikan pelebaran baris */
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+    /* Kunci ukuran area gambar */
+    .news-grid-extended .news-img-wrap {
+      width: 100% !important;
+      height: 220px !important;
+      overflow: hidden !important;
+      border-radius: 12px 12px 0 0 !important;
+    }
+
+    .news-grid-extended .news-img-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    /* Penataan konten agar rapi dan sama rata */
+    .news-grid-extended .news-body {
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 !important;
+      padding: 20px !important;
+    }
+
+    .news-grid-extended .news-link {
+      margin-top: auto !important;
+    }
+
+    /* Tampilan khusus Handphone */
+    @media (max-width: 640px) {
+      .news-grid-extended {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
   </style>
 </head>
 
@@ -77,32 +121,30 @@
           <img src="/assets/logo.png" alt="Transformasi Logo" onerror="this.style.display='none'" />
         </a>
         <nav class="nav-links" id="navLinks">
-          <a href="index.html#about"    data-en="About"              data-id="Tentang Kami">Tentang Kami</a>
-          <a href="berita.html"         data-en="News & Achievements" data-id="Berita & Prestasi" class="active">Berita & Prestasi</a>
-          <!-- <a href="ekstrakurikuler.html" data-en="Extracurricular"   data-id="Ekstrakurikuler">Ekstrakurikuler</a> -->
-          <a href="galeri.html"         data-en="Gallery"            data-id="Galeri">Galeri</a>
-          <a href="index.html#instagram" data-en="Social media"      data-id="Media sosial">Instagram</a>
+          <!-- <a href="index.html#about">Tentang Kami</a>
+          <a href="berita.html">Berita & Prestasi</a>
+          <a href="ekstrakurikuler.html">Ekstrakurikuler</a>
+          <a href="galeri.html" class="active">Galeri</a>
+          <a href="index.html#instagram">Instagram</a> -->
         </nav>
         <div class="nav-right">
           <div class="lang-toggle">
             <button class="lang-btn" id="langID" onclick="setLang('id')">ID</button>
             <button class="lang-btn" id="langEN" onclick="setLang('en')">EN</button>
           </div>
-          <a href="index.html#footer" class="nav-cta" data-en="Contact us" data-id="Kontak Kami">Kontak kami</a>
-          <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-            <span></span><span></span><span></span>
-          </div>
+          <a href="index.html#footer" class="nav-cta">Kontak kami</a>
+          <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
         </div>
       </div>
     </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html#about"      onclick="toggleMobileMenu()">Tentang Kami</a>
-      <a href="berita.html"            onclick="toggleMobileMenu()">Berita & Prestasi</a>
-      <a href="ekstrakurikuler.html"   onclick="toggleMobileMenu()">Ekstrakurikuler</a>
-      <a href="galeri.html"            onclick="toggleMobileMenu()">Galeri</a>
-      <a href="index.html#instagram"   onclick="toggleMobileMenu()">Media Sosial</a>
-      <a href="index.html#footer"      onclick="toggleMobileMenu()">Kontak Kami</a>
-    </div>
+    <!-- <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#about"     onclick="toggleMobileMenu()">Tentang Kami</a>
+      <a href="berita.html"           onclick="toggleMobileMenu()">Berita & Prestasi</a>
+      <a href="ekstrakurikuler.html"  onclick="toggleMobileMenu()">Ekstrakurikuler</a>
+      <a href="galeri.html"           onclick="toggleMobileMenu()">Galeri</a>
+      <a href="index.html#instagram"  onclick="toggleMobileMenu()">Media Sosial</a>
+      <a href="index.html#footer"     onclick="toggleMobileMenu()">Kontak Kami</a>
+    </div> -->
   </header>
 
   <!-- PAGE HERO -->
@@ -123,16 +165,16 @@
       <!-- Prestasi Banner -->
       <div class="prestasi-banner reveal">
         <div class="prestasi-banner-text">
-          <h3 data-en="🏆 Championship Highlights 2025" data-id="🏆 Sorotan Kejuaraan 2025">🏆 Sorotan Kejuaraan 2025</h3>
+          <h3 data-en="🏆 Championship Highlights 2026" data-id="🏆 Sorotan Kejuaraan 2026">🏆 Sorotan Kejuaraan 2026</h3>
           <p data-en="Our students shine in national and regional competitions."
              data-id="Siswa kami bersinar dalam kompetisi nasional dan regional, mengharumkan nama Yayasan Pendidikan Transformasi.">
             Siswa kami bersinar dalam kompetisi nasional dan regional, mengharumkan nama Yayasan Pendidikan Transformasi.
           </p>
         </div>
         <div class="prestasi-awards">
-          <div class="award-pill">🥇 <span>Matematika – Juara 1 Nasional</span></div>
-          <div class="award-pill">🥈 <span>Sains – Juara 2 Provinsi</span></div>
-          <div class="award-pill">🎨 <span>Lukis – Karya Terbaik</span></div>
+          <div class="award-pill">🥇 <span>Seni Pertunjukan Tari – Juara 1 Jenjang SD</span></div>
+        <div class="award-pill">🥈 <span>Seni Gambar Bercerita – Juara 2 Jenjang SD</span></div>
+        <div class="award-pill">🥉 <span>Seni Melukis Cerita – Juara 3 Jenjang SD</span></div>
         </div>
       </div>
 
@@ -199,6 +241,47 @@
           </div>
         </div>
 
+        <!-- Card 4 -->
+        <div class="news-card reveal">
+          <div class="news-img-wrap">
+            <img src="https://kanalborneo.com/wp-content/uploads/2026/06/IMG-20260614-WA0009.jpg" alt="Pelepasan dan Pentas Seni SD Transformasi " />
+            <span class="news-badge">Acara</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span class="news-date"> 14 Juni 2026
+</span>
+              <span class="news-cat">Kegiatan Sekolah</span>
+            </div>
+            <h3>Menyemai Karakter, Merayakan Harapan, Air Mata dan Sukacita, Pelepasan dan Pentas Seni SD Transformasi di Aula BKAD Kutai Barat</h3>
+            <p>Hari itu, Sekolah Dasar (SD) Transformasi kembali mengukir catatan sejarahnya. Melalui agenda tahunan Pentas Seni dan Pelepasan Siswa/i Tahun Ajaran 2025/2026, sekolah ini tidak hanya melepas kelulusan angkatan ke-8 tingkat SD dan angkatan ke-17 tingkat TK, tetapi juga memamerkan “buah kehidupan” yang telah mereka semai selama bertahun-tahun.</p>
+            <a href="https://kanalborneo.com/menyemai-karakter-merayakan-harapan-air-mata-dan-sukacita-pelepasan-dan-pentas-seni-sd-transformasi-di-aula-bkad-kutai-barat/" class="news-link" target="_blank">
+              <span>Baca Selengkapnya</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="news-card reveal">
+          <div class="news-img-wrap">
+            <img src="https://www.kukarnews.id/uploads/images/Perpisahan_Kubar_KN_1.JPG" alt="Pelepasan Siswa-Siswi TK Dan SD" />
+            <span class="news-badge">Acara</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span class="news-date">8 Juni 2025</span>
+              <span class="news-cat">Kegiatan Sekolah</span>
+            </div>
+            <h3>Pelepasan 37 Siswa-Siswi TK Dan SD Yayasan Transformasi Gelar Pentas Seni</h3>
+            <p>SENDAWAR- Yayasan Pendidikan Transformasi Kutai Barat, menggelar pelepasan siswa - siswi Taman Kanak-kanak Kanak( TK) dan Sekolah Dasar ( SD), Hal ini ditandai dengan pergelaran pentas seni, di Gedung PKK Kabupaten Kutai Barat, Sabtu ( 7/6/2025). Terlihat hadir Plt.Asisten 3 Kamius Junaidi, Anggota DPRD Kubar Adrianus, Ketua Komite Nelson, Staf Khusus Bupati Kubar Adit, serta orang tua murid.</p>
+            <a href="https://www.kukarnews.id/pelepasan-37-siswasiswi-tk-dan-sd-yayasan-transformasi-gelar-pentas-seni" class="news-link" target="_blank">
+              <span>Baca Selengkapnya</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
         <!-- Tambahkan kartu berita baru di sini dengan format yang sama -->
 
       </div><!-- /news-grid-extended -->
@@ -251,13 +334,10 @@
         </div>
         <div class="footer-col">
           <h4>Kontak</h4>
-          <div class="footer-contact-item">
-            <span class="icon">📍</span>
-            <span>Jl. Mangku Aji No.RT. 1, Belempung Ulaq, Kec. Barong Tongkok, Kabupaten Kutai Barat, Kalimantan Timur 75776</span>
-          </div>
-          <div class="footer-contact-item"><span class="icon">📞</span><span>+62 819-5231-3687</span></div>
-          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@transformasi.sch.id</span></div>
-          <div class="footer-contact-item"><span class="icon">🕐</span><span>Sen–Jum, 07:00–16:00 WIB</span></div>
+          <div class="footer-contact-item"><span class="icon"><img src="assets/Logo/pin.png" alt=""></span><span>Jl. Mangku Aji No.RT. 1, Belempung Ulaq, Kec. Barong Tongkok, Kutai Barat, Kalimantan Timur 75776</span></div>
+          <div class="footer-contact-item"><span class="icon"><img src="assets/Logo/telephone.png" alt=""></span><span>+62 819-5231-3687</span></div>
+          <div class="footer-contact-item"><span class="icon"><img src="assets/Logo/mail.png" alt=""></span><span>info@transformasi.sch.id</span></div>
+          <div class="footer-contact-item"><span class="icon"><img src="assets/Logo/clock.png" alt=""></span><span>Sen–Jum, 07:00–16:00 WIB</span></div>
         </div>
       </div>
       <div class="footer-bottom">

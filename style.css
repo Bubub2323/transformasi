@@ -933,102 +933,415 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: 0.5px;
 }
 
-/* ===========================================
-   BERITA & PRESTASI
-=========================================== */
-#berita { background: var(--off-white); }
-.berita-header { margin-bottom: 60px; }
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+/* =========================================================
+   VERSION 1 — EDITORIAL FOUNDATION
+   Hanya memengaruhi #berita
+========================================================= */
+
+#berita {
+  background: var(--off-white);
 }
-.news-card {
-  background: var(--white);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(105,0,239,0.06);
-  transition: var(--transition);
-  position: relative;
+
+#berita .berita-header {
+  max-width: 760px;
+  margin: 0 auto 55px;
 }
-.news-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
-.news-img-wrap { height: 220px; overflow: hidden; position: relative; }
-.news-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.news-card:hover .news-img-wrap img { transform: scale(1.05); }
-.news-badge {
-  position: absolute;
-  top: 14px; left: 14px;
-  background: var(--yellow);
-  color: var(--dark);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 50px;
-}
-.news-badge.prestasi { background: var(--purple); color: var(--white); }
-.news-body { padding: 24px; }
-.news-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.news-date { font-size: 0.78rem; color: var(--gray); font-weight: 500; }
-.news-cat { font-size: 0.75rem; font-weight: 700; color: var(--purple); text-transform: uppercase; letter-spacing: 0.5px; }
-.news-card h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 12px; color: var(--dark); }
-.news-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
-.news-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  font-weight: 700;
+
+#berita .berita-header .tag {
+  display: inline-block;
+  padding: 7px 13px;
+
+  background: rgba(105, 0, 239, 0.07);
   color: var(--purple);
-  transition: var(--transition);
+
+  border: 1px solid rgba(105, 0, 239, 0.14);
+  border-radius: 5px;
+
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
 }
-.news-link:hover { gap: 10px; color: var(--purple-dark); }
-.news-link svg { transition: var(--transition); }
 
-.berita-footer { text-align: center; margin-top: 50px; }
+#berita .berita-header .section-title {
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
 
-/* Prestasi Banner */
-.prestasi-banner {
-  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-  border-radius: var(--radius-md);
-  padding: 40px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 48px;
-  overflow: hidden;
+#berita .berita-header .section-subtitle {
+  max-width: 620px;
+  margin: auto;
+}
+
+
+/* =========================
+   PRESTASI
+========================= */
+
+#berita .prestasi-banner {
   position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  gap: 40px;
+
+  padding: 30px 34px;
+  margin-bottom: 45px;
+
+  background: linear-gradient(135deg, var(--purple) 0%, #4a00b8 100%);
+
+  border-radius: 12px;
+
+  overflow: hidden;
 }
-.prestasi-banner::before {
-  content: '🏆';
+
+#berita .prestasi-banner::before {
+  content: "";
+
   position: absolute;
-  right: 40px;
-  font-size: 8rem;
-  opacity: 0.08;
+  right: -60px;
+  top: -60px;
+
+  width: 220px;
+  height: 220px;
+
+  background: rgba(255,255,255,.05);
+
+  border-radius: 50%;
 }
-.prestasi-banner-text h3 { font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
-.prestasi-banner-text p { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
-.prestasi-awards {
+
+#berita .prestasi-banner::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 5px;
+
+  background: var(--yellow);
+}
+
+#berita .prestasi-banner-text {
+  position: relative;
+  z-index: 1;
+}
+
+#berita .prestasi-banner-text h3 {
+  margin-bottom: 8px;
+
+  color: var(--white);
+
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+#berita .prestasi-banner-text p {
+  margin: 0;
+
+  color: rgba(255,255,255,.75);
+
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
+#berita .prestasi-awards {
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 8px;
+
+  min-width: 270px;
 }
-.award-pill {
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50px;
-  padding: 8px 18px;
+
+#berita .award-pill {
+  padding: 9px 13px;
+
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
+
+  background: rgba(255,255,255,.09);
+
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 7px;
+
   color: var(--white);
-  backdrop-filter: blur(10px);
+
+  font-size: .77rem;
+
+  backdrop-filter: none;
+
+  transition: background .25s ease;
 }
 
+#berita .award-pill:hover {
+  background: rgba(255,255,255,.15);
+}
+
+
+/* =========================
+   FEATURED NEWS
+========================= */
+
+#berita .news-grid {
+  display: grid;
+
+  grid-template-columns: 1.45fr 1fr;
+  grid-template-rows: auto auto;
+
+  gap: 24px;
+}
+
+#berita .news-card {
+  transition: transform .3s ease, box-shadow .3s ease;
+  animation: beritaFadeUp .5s ease both;
+}
+
+#berita .news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(30,20,50,.1);
+}
+
+@keyframes beritaFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* BERITA PERTAMA */
+
+#berita .news-card:first-child {
+  grid-row: span 2;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--white);
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  box-shadow: 0 4px 20px rgba(30,20,50,.06);
+
+  border: 1px solid rgba(105,0,239,.07);
+}
+
+#berita .news-card:first-child .news-img-wrap {
+  height: 350px;
+}
+
+
+/* BERITA 2 & 3 */
+
+#berita .news-card:not(:first-child) {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+
+  background: var(--white);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(105,0,239,.07);
+
+  box-shadow: 0 3px 16px rgba(30,20,50,.045);
+}
+
+#berita .news-card:not(:first-child) .news-img-wrap {
+  height: 100%;
+  min-height: 190px;
+}
+
+
+/* IMAGE */
+
+#berita .news-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+#berita .news-img-wrap img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform .5s ease;
+}
+
+#berita .news-card:hover img {
+  transform: scale(1.035);
+}
+
+
+/* BODY */
+
+#berita .news-body {
+  padding: 21px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#berita .news-meta {
+  display: flex;
+  gap: 9px;
+
+  margin-bottom: 10px;
+}
+
+#berita .news-date {
+  color: var(--gray);
+  font-size: .72rem;
+}
+
+#berita .news-cat {
+  color: var(--purple);
+
+  font-size: .67rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+#berita .news-card h3 {
+  margin: 0 0 10px;
+
+  color: var(--dark);
+
+  font-size: 1rem;
+  line-height: 1.45;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#berita .news-card p {
+  margin: 0 0 18px;
+
+  color: var(--gray);
+
+  font-size: .81rem;
+  line-height: 1.65;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#berita .news-link {
+  margin-top: auto;
+
+  display: inline-flex;
+  gap: 6px;
+
+  color: var(--purple);
+
+  font-size: .77rem;
+  font-weight: 800;
+
+  transition: gap .25s ease;
+}
+
+#berita .news-link:hover {
+  gap: 10px;
+}
+
+#berita .news-link:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+
+/* BADGE */
+
+#berita .news-badge {
+  position: absolute;
+
+  top: 14px;
+  left: 14px;
+
+  padding: 6px 10px;
+
+  background: var(--yellow);
+  color: var(--dark);
+
+  border-radius: 5px;
+
+  font-size: .6rem;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+
+/* FOOTER */
+
+#berita .berita-footer {
+  text-align: center;
+  margin-top: 42px;
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+  #berita .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #berita .news-card:first-child {
+    grid-row: auto;
+  }
+
+  #berita .news-card:first-child .news-img-wrap {
+    height: 280px;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  #berita .prestasi-banner {
+    grid-template-columns: 1fr;
+    padding: 25px 20px;
+  }
+
+  #berita .prestasi-awards {
+    min-width: 0;
+  }
+
+  #berita .news-card:not(:first-child) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #berita .news-card:not(:first-child) .news-img-wrap {
+    height: 210px;
+    min-height: 0;
+  }
+
+  #berita .news-card:first-child .news-img-wrap {
+    height: 220px;
+  }
+
+}
 /* ===========================================
    EXTRAKURIKULER
 =========================================== */
@@ -2081,21 +2394,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 28px;
 }
 
-.kepsek-stats {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.kepsek-stat {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--gray-light);
-  border-radius: var(--radius-sm);
-  padding: 10px 16px;
-}
-.kepsek-stat span { font-size: 1.2rem; }
-.kepsek-stat strong { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
 
 /* Teacher carousel */
 .guru-carousel-wrap { }
