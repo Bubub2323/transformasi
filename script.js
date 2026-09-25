@@ -60,6 +60,7 @@ function setLang(lang) {
   localStorage.setItem('transformasi_lang', lang);
 
   // Update all data-id / data-en elements
+  //tya kajung
   document.querySelectorAll('[data-id],[data-en]').forEach(el => {
     const text = el.getAttribute('data-' + lang);
     if (text !== null) {
