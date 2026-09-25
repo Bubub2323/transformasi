@@ -30,36 +30,45 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Yayasan Pendidikan Transformasi",
-  "alternateName": ["Transformasi Education Foundation", "Transformasi Kubar"],
-  "description": "Yayasan pendidikan modern yang mengelola SD Transformasi dan TK Transformasi di Kutai Barat, Kalimantan Timur",
-  "url": "https://transformasiedu.sch.id",
-  "logo": "https://transformasiedu.sch.id/assets/logo.png",
-  "sameAs": [
-    "https://www.instagram.com/transformasi_kubar"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Jl. Mangku Aji No. RT. 1, Belempung Ulaq",
-    "addressLocality": "Barong Tongkok",
-    "addressRegion": "Kutai Barat",
-    "postalCode": "75700",
-    "addressCountry": "ID"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+62-819-5231-3687",
-    "contactType": "Student Admissions"
-  },
-  "founder": "Widodo Rahayu",
-  "foundingDate": "2018",
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "Kutai Barat, Kalimantan Timur"
-  },
-  "numberOfStudents": 180,
-  "numberOfTeachers": 18
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Yayasan Pendidikan Transformasi",
+      "url": "https://transformasiedu.sch.id"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "Yayasan Pendidikan Transformasi",
+      "alternateName": ["Transformasi Education Foundation", "Transformasi Kubar"],
+      "description": "Yayasan pendidikan modern yang mengelola SD Transformasi dan TK Transformasi di Kutai Barat, Kalimantan Timur",
+      "url": "https://transformasiedu.sch.id",
+      "logo": "https://transformasiedu.sch.id/assets/logo.png",
+      "sameAs": [
+        "https://www.instagram.com/transformasi_kubar"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Mangku Aji No. RT. 1, Belempung Ulaq",
+        "addressLocality": "Barong Tongkok",
+        "addressRegion": "Kutai Barat",
+        "postalCode": "75700",
+        "addressCountry": "ID"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+62-819-5231-3687",
+        "contactType": "Student Admissions"
+      },
+      "founder": "Widodo Rahayu",
+      "foundingDate": "2018",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Kutai Barat, Kalimantan Timur"
+      },
+      "numberOfStudents": 180,
+      "numberOfTeachers": 18
+    }
+  ]
 }
 </script>
 </head>
