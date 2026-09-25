@@ -4,7 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Galeri — Yayasan Pendidikan Transformasi</title>
-  <meta name="description" content="Galeri foto kegiatan, prestasi, dan momen berharga SD & TK Transformasi, Kutai Barat." />
+  <meta name="description" content="Galeri foto SD & TK Transformasi Kutai Barat. Kegiatan belajar, ekstrakurikuler, prestasi siswa, dan momen sekolah." />
+  <link rel="canonical" href="https://yayasan-transformasi.local/galeri.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yayasan-transformasi.local/galeri.html" />
+  <meta property="og:title" content="Galeri — SD & TK Transformasi Kutai Barat" />
+  <meta property="og:description" content="Galeri foto kegiatan belajar, ekstrakurikuler, prestasi siswa, dan momen sekolah dari Yayasan Pendidikan Transformasi." />
+  <meta property="og:image" content="https://yayasan-transformasi.local/assets/galeri/sd/SD1.JPG" />
+  <meta property="og:image:alt" content="Galeri Transformasi Kutai Barat" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
   <style>
@@ -121,8 +128,38 @@
     }
     .gallery-stat { text-align: center; }
     .gallery-stat strong { display: block; font-size: 2rem; font-weight: 900; color: var(--yellow); letter-spacing: -0.03em; }
-    .gallery-stat span { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .gallery-stat span { font-size: 0.82rem; color: rgba(255,255,255,0.45);     }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "Galeri SD & TK Transformasi",
+  "description": "Galeri foto kegiatan belajar, ekstrakurikuler, prestasi siswa, dan momen sekolah dari Yayasan Pendidikan Transformasi Kutai Barat",
+  "url": "https://yayasan-transformasi.local/galeri.html",
+  "image": "https://yayasan-transformasi.local/assets/galeri/sd/SD1.JPG"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Yayasan Pendidikan Transformasi",
+  "image": "https://yayasan-transformasi.local/back2.jpg",
+  "description": "Lembaga pendidikan modern SD & TK di Kutai Barat",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. Mangku Aji No. RT. 1, Belempung Ulaq",
+    "addressLocality": "Barong Tongkok",
+    "addressRegion": "Kutai Barat",
+    "postalCode": "75700",
+    "addressCountry": "ID"
+  },
+  "telephone": "+62-819-5231-3687",
+  "url": "https://yayasan-transformasi.local",
+  "priceRange": "$$"
+}
+</script>
 </head>
 
 <body>
@@ -131,9 +168,9 @@
   <header id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a href="index.html" class="nav-logo">
-          <img src="/assets/logo.png" alt="Transformasi Logo" onerror="this.style.display='none'" />
-        </a>
+         <a href="index.html" class="nav-logo">
+           <img src="/assets/logo.png" alt="Logo Yayasan Pendidikan Transformasi" onerror="this.style.display='none'" />
+         </a>
         <nav class="nav-links" id="navLinks">
           <!-- <a href="index.html#about">Tentang Kami</a>
           <a href="berita.html">Berita & Prestasi</a>
@@ -168,11 +205,12 @@
       <span>›</span>
       <span>Galeri</span>
     </div>
-    <h1>Momen yang <span>Berarti</span></h1>
+     <h1 aria-label="Galeri Momen yang Berarti SD & TK Transformasi">Momen yang <span>Berarti</span></h1>
     <p>Sekilas kehidupan sehari-hari yang dinamis di TK &amp; SD Transformasi — penuh semangat, kasih, dan prestasi.</p>
   </section>
 
   <!-- GALLERY SECTION -->
+  <main>
   <section id="gallery-full" class="section-pad">
     <div class="container">
 
@@ -196,55 +234,55 @@
       <!-- Masonry Grid — tambah <div> baru sesuai kebutuhan -->
       <div class="gallery-grid-full" id="galleryGrid">
 
-        <div class="gallery-item-full" data-cat="sd">
-          <img src="assets/galeri/sd/SD1.JPG" alt="SD Transformasi" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Kelas SD</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="sd">
+           <img src="assets/galeri/sd/SD1.JPG" alt="Kegiatan kelas SD Transformasi di ruang kelas" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Kelas SD</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="tk">
-          <img src="assets/galeri/tk/tk1.JPG" alt="TK Transformasi" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">TK Transformasi</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="tk">
+           <img src="assets/galeri/tk/tk1.JPG" alt="Siswa TK Transformasi melakukan kegiatan di dalam kelas" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">TK Transformasi</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="event">
-          <img src="assets/galeri/acara/DSC06935.JPG" alt="Natal" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Perayaan Natal</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="event">
+           <img src="assets/galeri/acara/DSC06935.JPG" alt="Perayaan Natal bersama siswa dan keluarga" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Perayaan Natal</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="prestasi">
-          <img src="assets/galeri/prestasi/fashionshow.JPG" alt="Fashion Show" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Lomba Fashion Show</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="prestasi">
+           <img src="assets/galeri/prestasi/fashionshow.JPG" alt="Siswa Transformasi tampil dalam lomba fashion show" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Lomba Fashion Show</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="sd">
-          <img src="assets/galeri/sd/belajar.png" alt="Belajar" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Aktivitas Belajar</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="sd">
+           <img src="assets/galeri/sd/belajar.png" alt="Aktivitas belajar interaktif siswa SD Transformasi" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Aktivitas Belajar</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="tk">
-          <img src="assets/galeri/tk/play1.JPG" alt="TK Bermain" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Bermain Kreatif</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="tk">
+           <img src="assets/galeri/tk/play1.JPG" alt="Siswa TK Transformasi bermain kreatif di area bermain" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Bermain Kreatif</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="tk">
-          <img src="assets/galeri/tk/DSC03428.JPG" alt="TK Belajar" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Belajar Kreatif</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="tk">
+           <img src="assets/galeri/tk/DSC03428.JPG" alt="Kegiatan belajar kreatif TK Transformasi dengan berbagai media" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Belajar Kreatif</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="event">
-          <img src="assets/galeri/acara/berbudaya.JPG" alt="Hari Berbudaya" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Hari Berbudaya</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="event">
+           <img src="assets/galeri/acara/berbudaya.JPG" alt="Siswa Transformasi merayakan hari berbudaya dengan kostum tradisional" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Hari Berbudaya</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="sd">
-          <img src="assets/galeri/sd/kls.png" alt="Kelas SD" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Kelas Modern SD</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="sd">
+           <img src="assets/galeri/sd/kls.png" alt="Ruang kelas modern SD Transformasi dengan fasilitas lengkap" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Kelas Modern SD</span></div>
+         </div>
 
-        <div class="gallery-item-full" data-cat="sd">
-          <img src="assets/galeri/sd/kls2.png" alt="Kelas SD 2" loading="lazy" />
-          <div class="gallery-overlay"><span class="gallery-label">Kelas Modern SD</span></div>
-        </div>
+         <div class="gallery-item-full" data-cat="sd">
+           <img src="assets/galeri/sd/kls2.png" alt="Sarana belajar modern di ruang kelas SD Transformasi" loading="lazy" />
+           <div class="gallery-overlay"><span class="gallery-label">Kelas Modern SD</span></div>
+         </div>
 
         <!-- Tambah foto baru di sini dengan format:
         <div class="gallery-item-full" data-cat="sd|tk|event|prestasi">
@@ -261,9 +299,10 @@
       </div>
 
     </div>
-  </section>
+   </section>
+   </main>
 
-  <!-- Lightbox -->
+   <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">✕</button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="" />
