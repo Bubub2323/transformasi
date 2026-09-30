@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yayasan-transformasi.local/sitemap.xml
+Sitemap: https://transformasiedu.sch.id/sitemap.xml
